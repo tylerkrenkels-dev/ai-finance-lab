@@ -10,3 +10,4 @@ data/
 .mypy_cache/
 site/
 .DS_Store
+.coverage
