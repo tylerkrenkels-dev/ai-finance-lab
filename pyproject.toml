@@ -15,6 +15,7 @@ packages = ["core", "apps"]
 [dependency-groups]
 dev = [
     "hatchling>=1.31.0",
+    "mkdocs-material>=9.7.7",
     "mypy>=2.3.0",
     "pre-commit>=4.6.1",
     "pytest>=9.1.1",
