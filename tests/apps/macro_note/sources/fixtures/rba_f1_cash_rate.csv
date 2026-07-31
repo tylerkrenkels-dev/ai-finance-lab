@@ -1,0 +1,15 @@
+﻿F1 INTEREST RATES AND YIELDS - MONEY MARKET
+Title,Cash Rate Target,Change in the Cash Rate Target,Interbank Overnight Cash Rate
+Description,Cash Rate Target on date,Change in the Cash Rate Target (in percentage points),Interbank Overnight Cash Rate on date
+Frequency,Daily,as announced,Daily
+Type,Original,Original,Original
+Units,Per cent,Per cent,Per cent
+
+Source,RBA,RBA,RBA
+Publication date,31-Jul-2026,31-Jul-2026,31-Jul-2026
+Series ID,FIRMMCRTD,FIRMMCCRT,FIRMMCRID
+27-Jul-2026,4.35,,4.35
+28-Jul-2026,4.35,,4.35
+29-Jul-2026,4.35,,4.35
+30-Jul-2026,4.35,,4.35
+31-Jul-2026
