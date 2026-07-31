@@ -1,0 +1,23 @@
+site_name: AI Finance Lab
+site_url: https://tylerkrenkels-dev.github.io/ai-finance-lab/
+repo_url: https://github.com/tylerkrenkels-dev/ai-finance-lab
+theme:
+  name: material
+  palette:
+    scheme: default
+  features:
+    - navigation.sections
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Daily Notes: notes/index.md
+  - Architecture: architecture/overview.md
+  - Standards:
+      - Engineering: standards/engineering.md
+      - Testing: standards/testing.md
+      - LLM Usage: standards/llm-usage.md
+  - Decisions: adr/index.md
+
+plugins:
+  - search
