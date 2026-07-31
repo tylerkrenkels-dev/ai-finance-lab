@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Applied AI systems for financial research: automated macro notes, filings intelligence, and deal analytics."
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "httpx>=0.28.1",
     "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.2",
 ]
 
 [build-system]
