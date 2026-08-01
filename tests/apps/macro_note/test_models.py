@@ -5,11 +5,15 @@ from pydantic import ValidationError
 
 from apps.macro_note.models import (
     Metric,
+    MetricChange,
     NoteFacts,
     NoteNarrative,
     Observation,
+    Section,
     SeriesMeta,
 )
+
+_NO_CHANGE = MetricChange(pct_change=None, bp_change=None, reference_as_of=None)
 
 
 def test_observation_construction() -> None:
@@ -60,9 +64,12 @@ def test_metric_defaults_not_stale() -> None:
         value=4.25,
         unit="%",
         as_of=date(2026, 7, 30),
+        change_1d=_NO_CHANGE,
+        change_1w=_NO_CHANGE,
+        change_1m=_NO_CHANGE,
     )
     assert metric.stale is False
-    assert metric.change is None
+    assert metric.change_1d == _NO_CHANGE
     assert metric.stale_as_of is None
 
 
@@ -72,8 +79,10 @@ def test_metric_stale_with_marker() -> None:
         label="US 10Y Yield",
         value=4.25,
         unit="%",
-        as_of=date(2026, 7, 30),
-        change=0.02,
+        as_of=date(2026, 7, 28),
+        change_1d=MetricChange(pct_change=0.5, bp_change=2.0, reference_as_of=date(2026, 7, 27)),
+        change_1w=_NO_CHANGE,
+        change_1m=_NO_CHANGE,
         stale=True,
         stale_as_of=date(2026, 7, 28),
     )
@@ -81,9 +90,9 @@ def test_metric_stale_with_marker() -> None:
     assert metric.stale_as_of == date(2026, 7, 28)
 
 
-def test_note_facts_requires_at_least_one_metric() -> None:
+def test_note_facts_requires_at_least_one_section() -> None:
     with pytest.raises(ValidationError):
-        NoteFacts(note_date=date(2026, 7, 31), metrics=[])
+        NoteFacts(note_date=date(2026, 7, 31), sections=[])
 
 
 def test_note_facts_construction() -> None:
@@ -93,9 +102,14 @@ def test_note_facts_construction() -> None:
         value=4.25,
         unit="%",
         as_of=date(2026, 7, 30),
+        change_1d=_NO_CHANGE,
+        change_1w=_NO_CHANGE,
+        change_1m=_NO_CHANGE,
     )
-    facts = NoteFacts(note_date=date(2026, 7, 31), metrics=[metric])
-    assert facts.metrics == [metric]
+    section = Section(title="Rates", metrics=[metric])
+    facts = NoteFacts(note_date=date(2026, 7, 31), sections=[section])
+    assert facts.sections == [section]
+    assert facts.data_warnings == []
 
 
 def test_note_narrative_requires_at_least_one_bullet() -> None:
