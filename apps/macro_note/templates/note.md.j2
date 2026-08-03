@@ -1,0 +1,57 @@
+---
+title: "Macro Research Digest — {{ facts.note_date.isoformat() }}"
+date: {{ facts.note_date.isoformat() }}
+description: "{{ narrative.headline }}"
+stale: {{ "true" if any_stale else "false" }}
+---
+
+# {{ narrative.headline }}
+
+{{ narrative.summary }}
+
+{% for bullet in narrative.bullets %}
+- {{ bullet }}
+{% endfor %}
+
+{% if facts.data_warnings %}
+## Data Warnings
+
+{% for warning in facts.data_warnings %}
+- {{ warning }}
+{% endfor %}
+
+{% endif %}
+{% for section in facts.sections %}
+## {{ section.title }}
+
+{% if section.metrics %}
+### Metrics
+
+| Metric | Value | 1D | 1W | 1M | As Of | Status |
+|---|---|---|---|---|---|---|
+{% for metric in section.metrics %}
+| {{ metric.label }} | {{ metric | format_value }} | {{ metric.change_1d | format_change }} | {{ metric.change_1w | format_change }} | {{ metric.change_1m | format_change }} | {{ metric.as_of | format_date }} | {{ "**Stale**" if metric.stale else "Fresh" }} |
+{% endfor %}
+
+{% endif %}
+{% if section.curve_slopes %}
+### Curve Slopes
+
+| Slope | Spread (bp) | As Of (1st leg) | As Of (2nd leg) |
+|---|---|---|---|
+{% for slope in section.curve_slopes %}
+| {{ slope.label }} | {{ slope.spread_bp | format_bp }} | {{ slope.first_as_of | format_date }} | {{ slope.second_as_of | format_date }} |
+{% endfor %}
+
+{% endif %}
+{% if section.fx_carry %}
+### FX Carry
+
+| Carry | Annualised Return | Rate Differential | Spot Change (Annualised) | Window (days) |
+|---|---|---|---|---|
+{% for carry in section.fx_carry %}
+| {{ carry.label }} | {{ carry.annualised_return_pct | format_pct }} | {{ carry.rate_differential_pct | format_pct }} | {{ carry.annualised_spot_change_pct | format_pct }} | {{ carry.window_days if carry.window_days is not none else "—" }} |
+{% endfor %}
+
+{% endif %}
+{% endfor %}
