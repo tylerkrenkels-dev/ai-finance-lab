@@ -10,7 +10,7 @@ dated archive of its daily output.
 
 | System | What it does | Status |
 |---|---|---|
-| Macro Research Digest | Automated daily pre-market macro note | in progress |
+| Macro Research Digest | Automated daily pre-market macro note | live |
 | Filings Intelligence | SEC/ASX retrieval with citations | planned |
 | Deal & Comps Platform | Australian precedent transaction database | planned |
 | Research Agent | Tool-calling agent orchestrating the above | planned |
