@@ -1,0 +1,84 @@
+name: macro-note
+
+on:
+  schedule:
+    # 20:30 UTC = 06:30 AEST (UTC+10) on Mon-Fri. Day-of-week is UTC: 0-4 (Sun-Thu
+    # UTC) is Mon-Fri AEST, since AEST is 10 hours ahead. GitHub Actions cron is
+    # UTC-only with no DST awareness, so during AEDT (UTC+11, roughly Oct-Apr) this
+    # fires at 07:30 local instead of 06:30 -- a known, accepted limitation of
+    # GitHub Actions scheduling, not worth maintaining two swapped schedules for.
+    - cron: '30 20 * * 0-4'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run the pipeline without committing, publishing, or redeploying docs'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      # data/ is gitignored (never committed -- see CLAUDE.md) and this runner starts
+      # from a fresh checkout every time, so this cache is the only cross-run
+      # persistence the store has. Without it, "fall back to the last stored value"
+      # would have nothing to fall back to on a fetch failure. restore-keys with a
+      # shared prefix always restores the most recent available cache and saves a
+      # new one under the run-specific key, growing forward run over run.
+      - name: Restore observation store cache
+        uses: actions/cache@v4
+        with:
+          path: data
+          key: macro-note-data-${{ github.run_id }}
+          restore-keys: |
+            macro-note-data-
+
+      - name: Run pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+        run: uv run python -m apps.macro_note.main
+
+      - name: Upload rendered note (dry run only)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: macro-note-dry-run
+          path: docs/notes/*.md
+
+      - name: Commit and push published note
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/notes/
+          git diff --staged --quiet || git commit -m "docs(macro-note): publish note for $(date -u +%F)"
+          git push
+
+      # GITHUB_TOKEN-authenticated pushes deliberately don't trigger other workflows'
+      # push events (a GitHub Actions safety feature against trigger loops), so
+      # docs.yml's own push/paths trigger won't fire on its own -- it has to be
+      # dispatched explicitly. docs.yml already supports workflow_dispatch.
+      - name: Trigger docs redeploy
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run docs.yml --ref main
