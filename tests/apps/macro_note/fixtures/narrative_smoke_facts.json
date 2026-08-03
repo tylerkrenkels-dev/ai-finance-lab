@@ -1,0 +1,70 @@
+{
+  "note_date": "2026-07-31",
+  "sections": [
+    {
+      "title": "Rates",
+      "metrics": [
+        {
+          "series_id": "us_10y",
+          "label": "US 10-Year Treasury Yield",
+          "value": 4.28,
+          "unit": "%",
+          "as_of": "2026-07-31",
+          "change_1d": {
+            "pct_change": 0.47,
+            "bp_change": 2.0,
+            "reference_as_of": "2026-07-30"
+          },
+          "change_1w": {
+            "pct_change": -1.15,
+            "bp_change": -5.0,
+            "reference_as_of": "2026-07-24"
+          },
+          "change_1m": {
+            "pct_change": null,
+            "bp_change": null,
+            "reference_as_of": null
+          },
+          "stale": false,
+          "stale_as_of": null
+        },
+        {
+          "series_id": "au_cash_rate",
+          "label": "RBA Cash Rate",
+          "value": 3.85,
+          "unit": "%",
+          "as_of": "2026-07-29",
+          "change_1d": {
+            "pct_change": null,
+            "bp_change": null,
+            "reference_as_of": null
+          },
+          "change_1w": {
+            "pct_change": null,
+            "bp_change": null,
+            "reference_as_of": null
+          },
+          "change_1m": {
+            "pct_change": null,
+            "bp_change": null,
+            "reference_as_of": null
+          },
+          "stale": true,
+          "stale_as_of": "2026-07-29"
+        }
+      ],
+      "curve_slopes": [
+        {
+          "label": "AU-US 10Y Spread",
+          "spread_bp": -43.0,
+          "first_as_of": "2026-07-31",
+          "second_as_of": "2026-07-30"
+        }
+      ],
+      "fx_carry": []
+    }
+  ],
+  "data_warnings": [
+    "RBA Cash Rate is stale: last updated 2026-07-29 (2 days ago)."
+  ]
+}
