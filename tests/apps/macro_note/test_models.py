@@ -4,6 +4,8 @@ import pytest
 from pydantic import ValidationError
 
 from apps.macro_note.models import (
+    CurveSlope,
+    FxCarry,
     Metric,
     MetricChange,
     NoteFacts,
@@ -125,3 +127,97 @@ def test_note_narrative_construction() -> None:
     )
     assert narrative.headline == "Yields tick higher"
     assert len(narrative.bullets) == 2
+
+
+# --- Rounding at construction time (#39) ---
+#
+# Real values captured from #23's live dry run, which is what actually surfaced
+# this bug: yfinance's raw copper close (6.5304999351501465 USD/lb) and the FX
+# carry annualised return it produced (110.61247311827908%) showed up verbatim
+# in the narrative while the rendered table independently rounded the same
+# metric for display -- a visible mismatch. These fields now round once, at
+# construction, so both consumers see the same number from the start.
+
+
+def test_metric_value_rounds_to_two_decimals_for_percent_unit() -> None:
+    metric = Metric(
+        series_id="au_3y",
+        label="AU 3-Year Government Bond Yield",
+        value=4.4911111111111114,  # matches the shape of the real AU 3Y read during the dry run
+        unit="%",
+        as_of=date(2026, 7, 29),
+        change_1d=_NO_CHANGE,
+        change_1w=_NO_CHANGE,
+        change_1m=_NO_CHANGE,
+    )
+    assert metric.value == 4.49
+
+
+def test_metric_value_rounds_to_four_decimals_for_non_percent_unit() -> None:
+    metric = Metric(
+        series_id="copper",
+        label="Copper",
+        value=6.5304999351501465,  # the exact raw yfinance value from the #23 dry run
+        unit="USD/lb",
+        as_of=date(2026, 8, 2),
+        change_1d=_NO_CHANGE,
+        change_1w=_NO_CHANGE,
+        change_1m=_NO_CHANGE,
+    )
+    assert metric.value == 6.5305
+
+
+def test_metric_change_rounds_pct_to_two_and_bp_to_one_decimal() -> None:
+    change = MetricChange(
+        pct_change=1.4683043311721555,
+        bp_change=-849.37123456,
+        reference_as_of=date(2026, 7, 27),
+    )
+    assert change.pct_change == 1.47
+    assert change.bp_change == -849.4
+
+
+def test_metric_change_none_fields_stay_none() -> None:
+    change = MetricChange(pct_change=None, bp_change=None, reference_as_of=None)
+    assert change.pct_change is None
+    assert change.bp_change is None
+
+
+def test_curve_slope_spread_bp_rounds_to_one_decimal() -> None:
+    slope = CurveSlope(
+        label="AU 3s10s Slope",
+        spread_bp=44.199999999999996,
+        first_as_of=date(2026, 7, 29),
+        second_as_of=date(2026, 7, 29),
+    )
+    assert slope.spread_bp == 44.2
+
+
+def test_curve_slope_spread_bp_none_stays_none() -> None:
+    slope = CurveSlope(label="US 2s10s Slope", spread_bp=None, first_as_of=None, second_as_of=None)
+    assert slope.spread_bp is None
+
+
+def test_fx_carry_pct_fields_round_to_two_decimals() -> None:
+    # The exact raw values from the #23 dry run's "AUD/USD Carry (1D)" row.
+    carry = FxCarry(
+        label="AUD/USD Carry (1D)",
+        annualised_return_pct=110.61247311827908,
+        rate_differential_pct=0.7199999999999998,
+        annualised_spot_change_pct=109.89247311827908,
+        window_days=1,
+    )
+    assert carry.annualised_return_pct == 110.61
+    assert carry.rate_differential_pct == 0.72
+    assert carry.annualised_spot_change_pct == 109.89
+
+
+def test_fx_carry_window_days_is_untouched_by_rounding() -> None:
+    carry = FxCarry(
+        label="AUD/USD Carry (1M)",
+        annualised_return_pct=18.5420933043268,
+        rate_differential_pct=0.72,
+        annualised_spot_change_pct=17.82,
+        window_days=30,
+    )
+    assert carry.window_days == 30

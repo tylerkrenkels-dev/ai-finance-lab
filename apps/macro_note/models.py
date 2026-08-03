@@ -5,15 +5,33 @@ produce Observations, calculations produce Metrics, and NoteFacts is the only
 input an LLM call ever receives. NoteNarrative is the only output an LLM call
 ever returns, and it carries prose fields only — no numeric fields, so the
 numeric fidelity guard has a clean payload to check narrative numerals against.
+
+MetricChange/Metric/CurveSlope/FxCarry round their float fields at construction
+time (see each class's validators). This is deliberately not done in
+calculations/ -- those modules compute from full, unrounded precision, and
+rounding an intermediate result before using it in further arithmetic (e.g.
+FxCarry.annualised_return_pct = rate_differential_pct + annualised_spot_change_pct)
+would compound error. Rounding belongs exactly once, at the boundary where a
+calculation's finished output becomes a publication-facing fact -- which is
+here. Every downstream consumer (the render table, the narrative LLM, the
+numeric fidelity guard) then sees the same already-clean number from a single
+source of truth, rather than each formatting a raw float independently and
+risking disagreeing with each other (found via #23's live dry run: a copper
+price of 6.5304999351501465 read as "6.5305" in the rendered table but
+"6.5304999351501465" in the narrative, for the same metric).
 """
 
 from datetime import date, datetime
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 SeriesSource = Literal["fred", "rba", "yfinance"]
 SeriesCategory = Literal["rates", "inflation", "fx", "commodities", "equities"]
+
+
+def _round_or_none(value: float | None, digits: int) -> float | None:
+    return value if value is None else round(value, digits)
 
 
 class Observation(BaseModel):
@@ -50,6 +68,16 @@ class MetricChange(BaseModel):
     bp_change: float | None
     reference_as_of: date | None
 
+    @field_validator("pct_change")
+    @classmethod
+    def _round_pct_change(cls, v: float | None) -> float | None:
+        return _round_or_none(v, 2)
+
+    @field_validator("bp_change")
+    @classmethod
+    def _round_bp_change(cls, v: float | None) -> float | None:
+        return _round_or_none(v, 1)
+
 
 class Metric(BaseModel):
     """A computed, publication-ready figure for one series in a note.
@@ -72,6 +100,11 @@ class Metric(BaseModel):
     stale: bool = False
     stale_as_of: date | None = None
 
+    @model_validator(mode="after")
+    def _round_value(self) -> "Metric":
+        self.value = round(self.value, 2 if self.unit == "%" else 4)
+        return self
+
 
 class CurveSlope(BaseModel):
     """A basis-point curve slope or cross-country spread, e.g. US 2s10s.
@@ -84,6 +117,11 @@ class CurveSlope(BaseModel):
     spread_bp: float | None
     first_as_of: date | None
     second_as_of: date | None
+
+    @field_validator("spread_bp")
+    @classmethod
+    def _round_spread_bp(cls, v: float | None) -> float | None:
+        return _round_or_none(v, 1)
 
 
 class FxCarry(BaseModel):
@@ -98,6 +136,11 @@ class FxCarry(BaseModel):
     rate_differential_pct: float | None
     annualised_spot_change_pct: float | None
     window_days: int | None
+
+    @field_validator("annualised_return_pct", "rate_differential_pct", "annualised_spot_change_pct")
+    @classmethod
+    def _round_pct_fields(cls, v: float | None) -> float | None:
+        return _round_or_none(v, 2)
 
 
 class Section(BaseModel):
