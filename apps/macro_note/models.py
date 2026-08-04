@@ -170,4 +170,11 @@ class NoteNarrative(BaseModel):
 
     headline: str
     summary: str
-    bullets: list[str] = Field(min_length=1)
+    # max_length=8 per #44: grounded in a live run against the real 5-section
+    # payload (rates/inflation/fx/commodities/equities) -- a clean reproduction
+    # produced 7 bullets, a guard-failure run produced 14+. 8 sits just above the
+    # observed-good run and well below the failure run. An oversized response
+    # raises ValidationError at construction in NarrativeGenerator.generate(),
+    # fails loud and publishes nothing -- the same pattern as NumericFidelityError
+    # and NoDataAvailableError elsewhere in this pipeline, not truncated or retried.
+    bullets: list[str] = Field(min_length=1, max_length=8)
