@@ -2,8 +2,8 @@ from apps.macro_note.models import SeriesMeta
 from apps.macro_note.registry import SERIES_REGISTRY
 
 
-def test_registry_has_twelve_series() -> None:
-    assert len(SERIES_REGISTRY) == 12
+def test_registry_has_sixteen_series() -> None:
+    assert len(SERIES_REGISTRY) == 16
 
 
 def test_registry_entries_are_series_meta() -> None:
@@ -22,7 +22,7 @@ def test_registry_source_codes_are_unique_per_source() -> None:
 
 def test_registry_source_counts_match_mvp_sources() -> None:
     sources = [entry.source for entry in SERIES_REGISTRY]
-    assert sources.count("fred") == 6
+    assert sources.count("fred") == 10
     assert sources.count("rba") == 3
     assert sources.count("yfinance") == 3
 
@@ -41,6 +41,10 @@ def test_registry_contains_expected_series_ids() -> None:
         "gold",
         "copper",
         "asx200",
+        "wti_crude",
+        "natural_gas",
+        "iron_ore",
+        "coal",
     }
     actual = {entry.series_id for entry in SERIES_REGISTRY}
     assert actual == expected
