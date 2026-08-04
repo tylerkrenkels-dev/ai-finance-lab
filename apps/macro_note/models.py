@@ -170,11 +170,16 @@ class NoteNarrative(BaseModel):
 
     headline: str
     summary: str
-    # max_length=8 per #44: grounded in a live run against the real 5-section
-    # payload (rates/inflation/fx/commodities/equities) -- a clean reproduction
-    # produced 7 bullets, a guard-failure run produced 14+. 8 sits just above the
-    # observed-good run and well below the failure run. An oversized response
-    # raises ValidationError at construction in NarrativeGenerator.generate(),
-    # fails loud and publishes nothing -- the same pattern as NumericFidelityError
-    # and NoDataAvailableError elsewhere in this pipeline, not truncated or retried.
-    bullets: list[str] = Field(min_length=1, max_length=8)
+    # max_length=9 per #44, revised after the commodities expansion (7-series
+    # Commodities section, up from 3): #44 originally set this to 8, grounded in a
+    # live run against the pre-expansion 5-section/12-series payload -- a clean
+    # reproduction produced 7 bullets, a guard-failure run produced 14+. Two live
+    # runs against the expanded 16-series payload (one with the new daily
+    # commodities stale, one with them fresh) both landed at exactly 8 bullets --
+    # zero headroom on two-for-two real, guard-passing runs, not a guess. 9 applies
+    # the same "+1 over the observed clean count" margin #44 used originally. An
+    # oversized response raises ValidationError at construction in
+    # NarrativeGenerator.generate(), fails loud and publishes nothing -- the same
+    # pattern as NumericFidelityError and NoDataAvailableError elsewhere in this
+    # pipeline, not truncated or retried.
+    bullets: list[str] = Field(min_length=1, max_length=9)

@@ -1,4 +1,4 @@
-"""Registry of the 12 series tracked by the Macro Research Digest MVP.
+"""Registry of the 16 series tracked by the Macro Research Digest MVP.
 
 `source_code` is the identifier a connector uses to query the source:
 - fred: the FRED series ID.
@@ -15,6 +15,23 @@ RBA series IDs were confirmed by fetching the live CSVs on 2026-07-31:
   which is the monthly variant of the same series.
 Re-check these against the live CSVs if the RBA connector ever fails to find
 a column, since the RBA renumbers and retires series IDs occasionally.
+
+Commodities expansion -- WTI crude, Henry Hub natural gas, iron ore, and
+Australian coal were all confirmed live against the FRED API directly on
+2026-08-04 (not a search snapshot):
+- WTI crude (daily) -> "DCOILWTICO", $84.25 as of 2026-07-27.
+- Henry Hub natural gas (daily) -> "DHHNGSP", $2.63 as of 2026-07-27.
+- Iron ore (monthly, IMF Global price of Iron Ore) -> "PIORECRUSDM", $103.79
+  as of 2026-06-01.
+- Coal, Australia (monthly, IMF Global price of Coal) -> "PCOALAUUSDM",
+  $150.36 as of 2026-06-01.
+Iron ore and coal are not US-exchange-traded, so no daily FRED series exists
+for either -- but both have clean, purpose-built monthly FRED series direct
+from the IMF, which is a better source here than a yfinance futures ticker
+would be: it's stable and fails loud on structural mismatch like every other
+FRED series in this registry, rather than degrading silently the way
+yfinance does. A monthly metric alongside daily ones in the same section is
+already precedented by us_cpi_yoy.
 """
 
 from apps.macro_note.models import SeriesMeta
@@ -115,5 +132,37 @@ SERIES_REGISTRY: tuple[SeriesMeta, ...] = (
         source_code="^AXJO",
         unit="index",
         category="equities",
+    ),
+    SeriesMeta(
+        series_id="wti_crude",
+        name="WTI Crude Oil",
+        source="fred",
+        source_code="DCOILWTICO",
+        unit="USD/bbl",
+        category="commodities",
+    ),
+    SeriesMeta(
+        series_id="natural_gas",
+        name="Henry Hub Natural Gas",
+        source="fred",
+        source_code="DHHNGSP",
+        unit="USD/MMBtu",
+        category="commodities",
+    ),
+    SeriesMeta(
+        series_id="iron_ore",
+        name="Iron Ore",
+        source="fred",
+        source_code="PIORECRUSDM",
+        unit="USD/tonne",
+        category="commodities",
+    ),
+    SeriesMeta(
+        series_id="coal",
+        name="Coal (Australia)",
+        source="fred",
+        source_code="PCOALAUUSDM",
+        unit="USD/tonne",
+        category="commodities",
     ),
 )
