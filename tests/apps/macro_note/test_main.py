@@ -1,3 +1,4 @@
+import logging
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
@@ -203,3 +204,42 @@ def test_run_propagates_numeric_fidelity_failure_and_publishes_nothing(tmp_path:
         )
 
     assert not (docs_dir / "notes" / f"{NOTE_DATE.isoformat()}.md").exists()
+
+
+def test_run_logs_full_narrative_and_payload_on_guard_failure(
+    tmp_path: Path, caplog: pytest.LogCaptureFixture
+) -> None:
+    """#42: a guard failure must leave the real narrative text and the NoteFacts
+    payload it was checked against in the log -- not just the guard's own terse
+    exception message -- since publish_note is never reached to persist either
+    one anywhere else."""
+    fabricated = NoteNarrative(
+        headline="Yields Surge",
+        summary="Yields jumped 9999 basis points today, a record move.",
+        bullets=["A 9999 basis point move, unlike anything on record."],
+    )
+    docs_dir = tmp_path / "docs"
+
+    with (
+        caplog.at_level(logging.ERROR, logger="apps.macro_note.main"),
+        pytest.raises(NumericFidelityError),
+    ):
+        run(
+            NOTE_DATE,
+            data_dir=tmp_path / "data",
+            docs_dir=docs_dir,
+            sources=_healthy_sources(4.25),
+            narrative_generator=_StubGenerator(fabricated),
+        )
+
+    assert len(caplog.records) == 1
+    logged = caplog.records[0].getMessage()
+    # The full narrative text survives in the log, not just the flagged fragment --
+    # every field, including ones that had nothing wrong with them.
+    assert fabricated.headline in logged
+    assert fabricated.summary in logged
+    assert fabricated.bullets[0] in logged
+    # The NoteFacts payload the narrative was checked against is present too, e.g.
+    # a real computed metric value that made it into the sourced note.
+    assert "4.25" in logged
+    assert str(NOTE_DATE) in logged
