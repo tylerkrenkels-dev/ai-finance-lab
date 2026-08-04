@@ -119,6 +119,15 @@ def test_note_narrative_requires_at_least_one_bullet() -> None:
         NoteNarrative(headline="Markets steady", summary="Quiet session.", bullets=[])
 
 
+def test_note_narrative_rejects_more_than_eight_bullets() -> None:
+    with pytest.raises(ValidationError):
+        NoteNarrative(
+            headline="Markets steady",
+            summary="Quiet session.",
+            bullets=[f"Bullet {i}" for i in range(9)],
+        )
+
+
 def test_note_narrative_construction() -> None:
     narrative = NoteNarrative(
         headline="Yields tick higher",
