@@ -85,7 +85,15 @@ def run(
         store.close()
 
     narrative = narrative_generator.generate(facts)
-    check_numeric_fidelity(narrative, facts)
+    try:
+        check_numeric_fidelity(narrative, facts)
+    except NumericFidelityError:
+        logger.error(
+            "Numeric fidelity guard blocked publication.\nNarrative:\n%s\nNoteFacts payload:\n%s",
+            narrative.model_dump_json(indent=2),
+            facts.model_dump_json(indent=2),
+        )
+        raise
     return publish_note(facts, narrative, docs_dir, overwrite=overwrite)
 
 
