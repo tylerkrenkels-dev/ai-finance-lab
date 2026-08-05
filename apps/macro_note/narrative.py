@@ -14,9 +14,30 @@ independently verify every numeral in the output against NoteFacts regardless
 of what this prompt asks for, and must itself recognize both digit and common
 spelled-out small-number forms (at minimum one through twenty) as valid
 matches -- not assume the prompt's instruction was followed.
+
+This module deliberately does not use messages.parse()/output_format. Two
+consecutive real scheduled-run failures (one of them #44's bullets cap) showed
+that when structured-output validation fails, the SDK discards the model's
+raw text before the pydantic.ValidationError reaches calling code -- there is
+no accessible hook to recover it (confirmed by reading anthropic's
+lib/_parse/_response.py: the raw Message is a local variable inside the
+post_parser closure, never attached to the exception). A prior version of this
+module worked around that by manually rebuilding messages.parse()'s
+output_config via anthropic's private, non-semver lib._parse._transform
+module -- but investigation also showed that array max-length constraints
+(e.g. NoteNarrative.bullets's max_length=9) are never forwarded into that
+schema as a hard constraint anyway; the API rejects "maxItems" outright and
+the SDK demotes it to descriptive text instead. So schema-constrained
+decoding bought nothing against the actual failure mode, while adding a
+fragile dependency on internals that could silently change on any anthropic
+version bump. This module instead calls messages.create() directly, asks for
+the JSON shape entirely via prompt instructions, and validates the returned
+text into NoteNarrative itself -- so a validation failure can still log
+exactly what the model wrote.
 """
 
 import anthropic
+import pydantic
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from apps.macro_note.models import NoteFacts, NoteNarrative
@@ -36,6 +57,12 @@ _PARAGRAPHS = [
         "Your job is to write prose that describes and contextualizes these figures: a "
         "headline, a summary, and bullet points. You may reference any number that already "
         "appears in the payload, exactly as it appears there."
+    ),
+    (
+        "Respond with a single JSON object and nothing else: no markdown code fences, no "
+        "text before or after the JSON. The object must have exactly three fields: "
+        '"headline" (a string), "summary" (a string), and "bullets" (an array of 1 to 9 '
+        "strings). Do not include any other fields."
     ),
     (
         "You must never calculate, estimate, infer, interpolate, round differently, "
@@ -78,6 +105,19 @@ class AnthropicSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
+class NarrativeParseError(RuntimeError):
+    """Raised when the model's response text did not validate into NoteNarrative.
+
+    Carries the raw response text -- the one piece of information a bare
+    pydantic.ValidationError discards -- so a parse failure can still be
+    diagnosed from the logs instead of leaving only a shape mismatch.
+    """
+
+    def __init__(self, message: str, raw_text: str) -> None:
+        super().__init__(message)
+        self.raw_text = raw_text
+
+
 class NarrativeGenerator:
     """Generates a NoteNarrative from a NoteFacts payload via the Anthropic API."""
 
@@ -93,18 +133,58 @@ class NarrativeGenerator:
 
     def generate(self, facts: NoteFacts) -> NoteNarrative:
         """Call the Anthropic API once, turning `facts` into a NoteNarrative."""
-        response = self._client.messages.parse(
+        response = self._client.messages.create(
             model=MODEL,
             max_tokens=MAX_TOKENS,
             temperature=0,
             system=SYSTEM_PROMPT,
             messages=[{"role": "user", "content": _build_prompt(facts)}],
-            output_format=NoteNarrative,
         )
-        parsed = response.parsed_output
-        if parsed is None:
-            raise ValueError("Anthropic response did not parse into a NoteNarrative")
-        return parsed
+        text = _extract_text(response)
+
+        candidates = [text]
+        unfenced = _strip_code_fence(text)
+        if unfenced is not None:
+            candidates.append(unfenced)
+
+        last_error: pydantic.ValidationError | None = None
+        for candidate in candidates:
+            try:
+                return NoteNarrative.model_validate_json(candidate)
+            except pydantic.ValidationError as exc:
+                last_error = exc
+
+        raise NarrativeParseError(
+            f"Model response did not validate into NoteNarrative: {last_error}",
+            raw_text=text,
+        ) from last_error
+
+
+def _extract_text(response: anthropic.types.Message) -> str:
+    for block in response.content:
+        if block.type == "text":
+            return block.text
+    raise NarrativeParseError(
+        "Anthropic response contained no text block", raw_text=str(response.content)
+    )
+
+
+def _strip_code_fence(text: str) -> str | None:
+    """Strips a single wrapping ``` or ```json code fence, or returns None if
+    `text` isn't fenced.
+
+    The prompt explicitly asks for no fences, but wrapping JSON in a markdown
+    code block is a common enough model habit that it's worth recovering from
+    before failing the run over otherwise-valid content -- unlike a genuine
+    content violation (e.g. too many bullets), a fence is a cosmetic artifact
+    around the JSON, not a data-integrity problem. This is tried only as a
+    fallback after the raw text fails to parse; see generate().
+    """
+    stripped = text.strip()
+    lines = stripped.splitlines()
+    if len(lines) >= 2 and lines[0].startswith("```") and lines[-1].strip() == "```":
+        return "\n".join(lines[1:-1])
+    return None
 
 
 def _build_prompt(facts: NoteFacts) -> str:

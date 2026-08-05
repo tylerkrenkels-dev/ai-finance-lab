@@ -7,7 +7,7 @@ import pytest
 from apps.macro_note.guards import NumericFidelityError
 from apps.macro_note.main import NoDataAvailableError, run
 from apps.macro_note.models import NoteFacts, NoteNarrative, Observation, SeriesSource
-from apps.macro_note.narrative import NarrativeGenerator
+from apps.macro_note.narrative import NarrativeGenerator, NarrativeParseError
 from apps.macro_note.sources.base import SourceProvider
 
 NOTE_DATE = date(2026, 7, 31)
@@ -40,6 +40,16 @@ class _StubGenerator(NarrativeGenerator):
 
     def generate(self, facts: NoteFacts) -> NoteNarrative:  # type: ignore[override]
         return self._narrative
+
+
+class _RaisesNarrativeParseError(NarrativeGenerator):
+    """A NarrativeGenerator that simulates a real parse failure without calling the API."""
+
+    def __init__(self, raw_text: str) -> None:
+        self._raw_text = raw_text
+
+    def generate(self, facts: NoteFacts) -> NoteNarrative:  # type: ignore[override]
+        raise NarrativeParseError("simulated parse failure", raw_text=self._raw_text)
 
 
 class _AlwaysFailsSource:
@@ -241,5 +251,50 @@ def test_run_logs_full_narrative_and_payload_on_guard_failure(
     assert fabricated.bullets[0] in logged
     # The NoteFacts payload the narrative was checked against is present too, e.g.
     # a real computed metric value that made it into the sourced note.
+    assert "4.25" in logged
+    assert str(NOTE_DATE) in logged
+
+
+def test_run_propagates_narrative_parse_failure_and_publishes_nothing(tmp_path: Path) -> None:
+    docs_dir = tmp_path / "docs"
+
+    with pytest.raises(NarrativeParseError):
+        run(
+            NOTE_DATE,
+            data_dir=tmp_path / "data",
+            docs_dir=docs_dir,
+            sources=_healthy_sources(4.25),
+            narrative_generator=_RaisesNarrativeParseError(raw_text="not json at all"),
+        )
+
+    assert not (docs_dir / "notes" / f"{NOTE_DATE.isoformat()}.md").exists()
+
+
+def test_run_logs_raw_model_output_on_narrative_parse_failure(
+    tmp_path: Path, caplog: pytest.LogCaptureFixture
+) -> None:
+    """#42's real gap: a ValidationError inside NarrativeGenerator.generate() happens
+    before a NoteNarrative object exists, so there's nothing for the guard-failure log
+    to serialize. This asserts the raw model text survives in the log regardless."""
+    raw_text = '{"headline": "Yields Surge", "summary": "...", "bullets": ["one", "two",' + (
+        ' "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven"]}'
+    )
+    docs_dir = tmp_path / "docs"
+
+    with (
+        caplog.at_level(logging.ERROR, logger="apps.macro_note.main"),
+        pytest.raises(NarrativeParseError),
+    ):
+        run(
+            NOTE_DATE,
+            data_dir=tmp_path / "data",
+            docs_dir=docs_dir,
+            sources=_healthy_sources(4.25),
+            narrative_generator=_RaisesNarrativeParseError(raw_text=raw_text),
+        )
+
+    assert len(caplog.records) == 1
+    logged = caplog.records[0].getMessage()
+    assert raw_text in logged
     assert "4.25" in logged
     assert str(NOTE_DATE) in logged

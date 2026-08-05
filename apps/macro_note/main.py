@@ -9,10 +9,14 @@ Resilience is scoped precisely, per CLAUDE.md Sec.4: a single series' fetch
 failure is caught and logged, then the run continues -- build_note_facts
 falls back to whatever's already in the store (possibly nothing, possibly a
 stale prior value) and marks it accordingly. That is the *only* place this
-module catches and continues. Two things are never masked, and always
+module catches and continues. Three things are never masked, and always
 propagate uncaught so the run fails loudly and publishes nothing:
 
 - NumericFidelityError: a narrated figure didn't trace to the payload.
+- NarrativeParseError: the model's response text didn't validate into
+  NoteNarrative (e.g. an oversized bullet list, malformed JSON). Logged here
+  with the raw model text before re-raising -- see narrative.py's module
+  docstring for why that text would otherwise be unrecoverable.
 - NoDataAvailableError: every one of fred/rba/yfinance -- three genuinely
   independent providers -- failed to produce a single observation this run.
   That combination is a much stronger signal of an environment-level problem
@@ -32,7 +36,7 @@ from pathlib import Path
 
 from apps.macro_note.guards import NumericFidelityError, check_numeric_fidelity
 from apps.macro_note.models import SeriesSource
-from apps.macro_note.narrative import NarrativeGenerator
+from apps.macro_note.narrative import NarrativeGenerator, NarrativeParseError
 from apps.macro_note.payload import build_note_facts
 from apps.macro_note.publish import DEFAULT_DOCS_DIR, publish_note
 from apps.macro_note.registry import SERIES_REGISTRY
@@ -84,7 +88,16 @@ def run(
     finally:
         store.close()
 
-    narrative = narrative_generator.generate(facts)
+    try:
+        narrative = narrative_generator.generate(facts)
+    except NarrativeParseError as exc:
+        logger.error(
+            "Narrative generation failed to parse.\nRaw model output:\n%s\nNoteFacts payload:\n%s",
+            exc.raw_text,
+            facts.model_dump_json(indent=2),
+        )
+        raise
+
     try:
         check_numeric_fidelity(narrative, facts)
     except NumericFidelityError:
@@ -136,7 +149,7 @@ if __name__ == "__main__":
     _note_date = date.today()
     try:
         _path = run(_note_date)
-    except (NumericFidelityError, NoDataAvailableError) as exc:
+    except (NumericFidelityError, NarrativeParseError, NoDataAvailableError) as exc:
         print(f"::error::{exc}")
         raise
     print(f"Published {_path}")
