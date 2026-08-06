@@ -115,8 +115,28 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh pr checks "${{ steps.publish_pr.outputs.pr_url }}" --watch --fail-fast
-          gh pr merge "${{ steps.publish_pr.outputs.pr_url }}" --squash --delete-branch
+          PR_URL="${{ steps.publish_pr.outputs.pr_url }}"
+          # `gh pr checks --watch` errors out immediately with "no checks reported"
+          # if called before any check has registered on the PR, rather than
+          # waiting for one to appear -- observed live on 2026-08-06: ci.yml's
+          # pull_request trigger (fired by this PR's PAT-authored open, not
+          # GITHUB_TOKEN) took ~7s to register a check, and --watch lost that race
+          # every time. `gh pr view` is exit-0 and valid JSON regardless of check
+          # count (unlike `gh pr checks`, confirmed against a disposable test PR),
+          # so poll it until at least one check exists before handing off to
+          # --watch. 30 attempts * 5s = 150s ceiling, ~20x the observed real delay.
+          ATTEMPTS=0
+          MAX_ATTEMPTS=30
+          until [ "$(gh pr view "$PR_URL" --json statusCheckRollup --jq '.statusCheckRollup | length')" -gt 0 ]; do
+            ATTEMPTS=$((ATTEMPTS + 1))
+            if [ "$ATTEMPTS" -ge "$MAX_ATTEMPTS" ]; then
+              echo "No checks registered on $PR_URL after $((MAX_ATTEMPTS * 5))s -- giving up."
+              exit 1
+            fi
+            sleep 5
+          done
+          gh pr checks "$PR_URL" --watch --fail-fast
+          gh pr merge "$PR_URL" --squash --delete-branch
 
       # GITHUB_TOKEN-authenticated pushes deliberately don't trigger other workflows'
       # push events (a GitHub Actions safety feature against trigger loops), so
