@@ -18,6 +18,7 @@ on:
 permissions:
   contents: write
   actions: write
+  pull-requests: write
 
 jobs:
   publish:
@@ -64,19 +65,64 @@ jobs:
           name: macro-note-dry-run
           path: docs/notes/*.md
 
-      - name: Commit and push published note
+      # main is protected by a ruleset requiring a PR plus a passing "ci" status
+      # check -- a direct `git push` to main (as this step did before) is rejected
+      # outright (GH013). The fix isn't a branch-protection bypass: it's routing the
+      # bot through the same PR-plus-CI path a human push would take. That requires
+      # a real, non-GITHUB_TOKEN identity for the push and PR-open specifically,
+      # because GitHub deliberately does not let events triggered by the ephemeral
+      # GITHUB_TOKEN fire other workflows' push/pull_request triggers (the same
+      # recursion guard "Trigger docs redeploy" below already works around) -- with
+      # GITHUB_TOKEN alone, ci.yml's pull_request trigger would never fire on this
+      # PR, the required "ci" check would never report, and the PR would block
+      # forever. MACRO_NOTE_PUBLISH_PAT is scoped to this repo only (Contents RW,
+      # Pull requests RW, nothing else) and exists solely to be a real identity for
+      # this push and PR-open. Expires 2027-08-06. If this step starts failing with
+      # "Bad credentials" / "Authentication failed" -- note the pipeline itself
+      # already ran clean by this point (fetch/narrative/guard all passed) -- this
+      # token has expired. Regenerate at
+      # https://github.com/settings/personal-access-tokens/new with the same scope
+      # and update the MACRO_NOTE_PUBLISH_PAT secret; see CLAUDE.md Sec.10.
+      - name: Push note to a branch and open PR
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        id: publish_pr
+        env:
+          GH_TOKEN: ${{ secrets.MACRO_NOTE_PUBLISH_PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          NOTE_DATE=$(date -u +%F)
+          BRANCH="automated/note-${NOTE_DATE}-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
           git add docs/notes/
-          git diff --staged --quiet || git commit -m "docs(macro-note): publish note for $(date -u +%F)"
-          git push
+          if git diff --staged --quiet; then
+            echo "No note changes to publish."
+            exit 0
+          fi
+          git commit -m "docs(macro-note): publish note for ${NOTE_DATE}"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:refs/heads/${BRANCH}"
+          PR_URL=$(gh pr create --title "docs(macro-note): publish note for ${NOTE_DATE}" \
+            --body "Automated publish for ${NOTE_DATE}." --base main --head "$BRANCH")
+          echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
+
+      # The "ci" check that fired above is real -- triggered by the PAT-authored PR,
+      # not skipped or bypassed -- so waiting for it here and merging only once it
+      # passes satisfies the ruleset on its own terms. This step deliberately uses
+      # the default GITHUB_TOKEN, not the PAT: merging a PR that already satisfies
+      # every required rule needs no special identity or bypass.
+      - name: Wait for CI and merge
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) && steps.publish_pr.outputs.pr_url != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr checks "${{ steps.publish_pr.outputs.pr_url }}" --watch --fail-fast
+          gh pr merge "${{ steps.publish_pr.outputs.pr_url }}" --squash --delete-branch
 
       # GITHUB_TOKEN-authenticated pushes deliberately don't trigger other workflows'
       # push events (a GitHub Actions safety feature against trigger loops), so
       # docs.yml's own push/paths trigger won't fire on its own -- it has to be
-      # dispatched explicitly. docs.yml already supports workflow_dispatch.
+      # dispatched explicitly. docs.yml already supports workflow_dispatch. This
+      # holds even for the merge above: it's still a GITHUB_TOKEN-authored event.
       - name: Trigger docs redeploy
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
         env:

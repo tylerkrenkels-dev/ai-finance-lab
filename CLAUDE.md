@@ -147,3 +147,22 @@ If something in this file conflicts with an instruction in the session, follow t
 **Phase:** 1 — Macro Research Digest MVP
 **Definition of done:** five consecutive weekday notes published with zero manual intervention, every figure traceable to a named source series, the numeric guard proven to block a fabricated figure, and a simulated source outage handled with a visible staleness marker.
 **After that:** no new features for thirty days. Let it run.
+
+### Secrets requiring rotation
+
+- **`MACRO_NOTE_PUBLISH_PAT`** — a fine-grained personal access token, scoped to this
+  repository only (Contents: Read and write, Pull requests: Read and write, nothing
+  else). Used by `macro-note.yml` to push the daily note's branch and open its PR
+  as a real GitHub identity rather than the workflow's default `GITHUB_TOKEN` --
+  required because `main` is protected by a ruleset demanding a PR plus a passing
+  `ci` status check, and GitHub does not let events authored by the ephemeral
+  `GITHUB_TOKEN` trigger other workflows (so `ci.yml`'s `pull_request` trigger
+  would never fire, and the check would never report, if the PR were opened with
+  `GITHUB_TOKEN` alone). See `macro-note.yml`'s "Push note to a branch and open PR"
+  step for the full reasoning.
+  **Expires 2027-08-06.** On expiry, the pipeline itself still runs clean --
+  fetch, narrative generation, and the numeric guard all pass -- and the failure
+  surfaces only at that step, as `Bad credentials` / `Authentication failed`.
+  Regenerate at github.com/settings/personal-access-tokens/new with the same
+  scope (repo-only, Contents RW + Pull requests RW) and update the secret via
+  `gh secret set MACRO_NOTE_PUBLISH_PAT`.
