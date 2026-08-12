@@ -28,6 +28,16 @@ percent-tagged or basis-point-tagged narrated numeral must match a
 same-tagged payload candidate; an unspecified (unit-less) narrated numeral
 may match any payload candidate regardless of tag.
 
+ISO dates ("2026-08-07") are recognized as a unit before the generic digit
+scan runs, and contribute year and day-of-month as unspecified numerals --
+never a month numeral, since no payload field carries a bare month number to
+check it against. This mirrors month-name dates ("July 31"), which likewise
+only ever yield day and year: "July" isn't a digit token, so no month numeral
+is produced there either. Without this special case, the generic digit/sign
+regex reads a date's separator hyphens as minus signs (e.g. "2026-08-07"
+splitting into 2026, -08, -07), which is exactly the false positive this
+guard hit in production on a real, correctly-cited date (#21).
+
 Known, accepted limitations (deliberate tradeoffs, not bugs):
 
 - Sign-stripped magnitudes are accepted one-directionally: a payload value
@@ -105,6 +115,14 @@ _SIGN_WORD_RE = re.compile(r"(?:^|\W)(?:negative|minus)\s*$", re.IGNORECASE)
 
 _DIGIT_NUMBER_RE = re.compile(r"(?P<sign>-\s*)?(?P<num>\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)")
 
+# Matches ISO 8601 dates ("2026-08-07") so extract_numerals can claim the whole
+# span before the generic digit/sign scan reaches it -- see extract_numerals'
+# docstring for why this exists. Month/day ranges are restricted (01-12,
+# 01-31) so this only fires on genuine dates, not arbitrary N-N-N tokens.
+_ISO_DATE_RE = re.compile(
+    r"(?<!\d)(?P<year>\d{4})-(?P<month>0[1-9]|1[0-2])-(?P<day>0[1-9]|[12]\d|3[01])(?!\d)"
+)
+
 # (?<!-) / (?!-) exclude hyphenated compounds ("twenty-five") from matching at all --
 # see the module docstring's word-number limitation for why decomposing them into
 # separate pieces ("twenty" + "five") would be actively wrong, not just incomplete.
@@ -154,9 +172,36 @@ def extract_numerals(text: str) -> list[NumeralMatch]:
     "%"/"percent"/"percentage point(s)" -> percent, "bp"/"bps"/"basis point(s)" ->
     basis_points, otherwise -> unspecified. A "negative"/"minus" immediately
     before the numeral makes it negative.
+
+    ISO dates ("2026-08-07") are recognized before the generic digit scan and
+    claim their own span: they contribute year and day-of-month as unspecified
+    numerals (mirroring how a month-name date like "July 31" only ever yields
+    day and year), but never a month numeral. Without this, the generic
+    digit/sign regex reads a date's separator hyphens as minus signs -- e.g.
+    "2026-08-07" would otherwise split into 2026, -08, -07 -- which is exactly
+    the false positive this guard hit in production (#21).
     """
     matches: list[NumeralMatch] = []
+    consumed_spans: list[tuple[int, int]] = []
+    for date_match in _ISO_DATE_RE.finditer(text):
+        consumed_spans.append(date_match.span())
+        matches.append(
+            NumeralMatch(
+                text=date_match.group("year"),
+                value=float(date_match.group("year")),
+                unit="unspecified",
+            )
+        )
+        matches.append(
+            NumeralMatch(
+                text=date_match.group("day"),
+                value=float(date_match.group("day")),
+                unit="unspecified",
+            )
+        )
     for digit_match in _DIGIT_NUMBER_RE.finditer(text):
+        if _overlaps_any(digit_match.span(), consumed_spans):
+            continue
         raw = digit_match.group("num").replace(",", "")
         value = float(raw)
         if digit_match.group("sign") or _has_preceding_sign_word(text, digit_match.start()):
@@ -194,6 +239,11 @@ def _detect_unit(text: str, end: int) -> NumeralUnit:
 def _has_preceding_sign_word(text: str, start: int) -> bool:
     head = text[max(0, start - _SIGN_LOOKBEHIND_CHARS) : start]
     return bool(_SIGN_WORD_RE.search(head))
+
+
+def _overlaps_any(span: tuple[int, int], spans: list[tuple[int, int]]) -> bool:
+    start, end = span
+    return any(start < other_end and end > other_start for other_start, other_end in spans)
 
 
 def _payload_candidates(facts: NoteFacts) -> dict[NumeralUnit, set[float]]:
