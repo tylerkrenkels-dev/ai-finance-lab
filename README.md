@@ -40,6 +40,9 @@ for how this is enforced mechanically, not as a prompting convention.
 | Deal & Comps Platform | Australian precedent transaction database | planned |
 | Research Agent | Tool-calling agent orchestrating the above | planned |
 
+Alongside the automated Systems above, this repo also hosts manual M&A/Financial
+Sponsors case studies — see [Case Studies](https://tylerkrenkels-dev.github.io/ai-finance-lab/case-studies/).
+
 ## Quickstart
 
 Requires [uv](https://docs.astral.sh/uv/) and Python 3.12.
