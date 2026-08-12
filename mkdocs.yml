@@ -18,6 +18,10 @@ nav:
       - Testing: standards/testing.md
       - LLM Usage: standards/llm-usage.md
   - Decisions: adr/index.md
+  - Case Studies (manual, non-Systems):
+      - Overview: case-studies/index.md
+      - Insignia Financial: case-studies/insignia-financial.md
+      - "Perpetual (live)": case-studies/perpetual-live-tracker.md
 
 plugins:
   - search
