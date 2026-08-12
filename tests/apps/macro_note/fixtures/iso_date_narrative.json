@@ -1,0 +1,15 @@
+{
+    "headline": "US Yields Rise Sharply While Gold Surges; Australian Rates Steady Amid Stale Data",
+    "summary": "US Treasury yields climbed notably over the past day, with the 2-year rising 6.0 basis points to 4.25% and the 10-year advancing 7.0 basis points to 4.72%, steepening the 2s10s curve to 47.0 basis points. The Federal Funds Rate held steady at 3.63%. Gold rallied 1.51% to 4427.7998 USD/oz, extending a strong month-long advance. The Australian economy showed stability with the RBA Cash Rate unchanged at 4.35%, though Australian bond data is stale as of 2026-08-05. AUD/USD appreciated 0.51% to 0.7064, supported by a 0.72% rate differential. Commodity markets showed mixed signals: copper gained 0.52% while oil prices remain dated. The ASX 200 declined 0.33% on the day but remains up 4.84% over the month.",
+    "bullets": [
+        "US 2-year Treasury yield reached 4.25%, up 6.0 basis points from 2026-08-07, while the 10-year climbed to 4.72%, up 7.0 basis points over the same period.",
+        "The US 2s10s curve slope stands at 47.0 basis points, reflecting modest steepness amid the recent yield moves.",
+        "Gold surged 1.51% to 4427.7998 USD/oz, with month-to-date gains of 7.89%, signaling sustained safe-haven demand.",
+        "Copper advanced 0.52% to 6.6285 USD/lb, up 6.34% over the past month despite modest daily volatility.",
+        "AUD/USD appreciated to 0.7064, gaining 0.51% on the day and 1.86% over one month, with annualised carry returns of 22.62% over the past month.",
+        "The RBA Cash Rate remained anchored at 4.35% with no change over the past month, while the US Federal Funds Rate held at 3.63%.",
+        "Australian 3-year and 10-year government bond yields are stale as of 2026-08-05; the AU 3s10s slope was 45.6 basis points at that date.",
+        "Oil prices are stale as of 2026-08-03; Brent Crude was last recorded at 88.9 USD/bbl and WTI at 81.96 USD/bbl.",
+        "US CPI data is stale as of 2026-06-01 at an index level of 332.568; Iron Ore and Coal (Australia) data are also stale as of 2026-06-01."
+    ]
+}

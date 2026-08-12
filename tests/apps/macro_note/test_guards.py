@@ -27,6 +27,16 @@ def _load_fixture_narrative() -> NoteNarrative:
     return NoteNarrative.model_validate(raw)
 
 
+def _load_iso_date_facts() -> NoteFacts:
+    raw = json.loads((FIXTURES_DIR / "iso_date_facts.json").read_text())
+    return NoteFacts.model_validate(raw)
+
+
+def _load_iso_date_narrative() -> NoteNarrative:
+    raw = json.loads((FIXTURES_DIR / "iso_date_narrative.json").read_text())
+    return NoteNarrative.model_validate(raw)
+
+
 def _facts_with_bp_change(bp_change: float) -> NoteFacts:
     metric = Metric(
         series_id="us_10y",
@@ -168,6 +178,67 @@ def test_day_of_month_from_date_field_is_traceable() -> None:
     )
 
     assert find_untraceable_numerals(narrative, facts) == []
+
+
+# --- ISO date (YYYY-MM-DD) handling ---
+#
+# Real production failure (macro-note workflow run 31536688043, 2026-08-11):
+# the guard flagged "-07" in bullets[0] as an untraceable -7.0. The date
+# "2026-08-07" is the real reference_as_of for us_2y's change_1d -- the
+# narrative was correct. The digit extractor's sign regex was reading the
+# date's separator hyphens as minus signs and splitting the date into
+# 2026 / -08 / -07. See fixtures/README.md for full provenance.
+
+
+def test_iso_date_hyphens_are_not_read_as_minus_signs() -> None:
+    """The exact real bullets[0] text and us_2y's real reference_as_of from the
+    production failure: "2026-08-07" must not extract as 2026 / -8 / -7."""
+    text = (
+        "US 2-year Treasury yield reached 4.25%, up 6.0 basis points from "
+        "2026-08-07, while the 10-year climbed to 4.72%, up 7.0 basis points "
+        "over the same period."
+    )
+
+    values = {(m.value, m.unit) for m in extract_numerals(text)}
+
+    assert (-8.0, "unspecified") not in values
+    assert (-7.0, "unspecified") not in values
+    assert (2026.0, "unspecified") in values
+    assert (7.0, "unspecified") in values
+
+
+def test_iso_date_extracts_year_and_day_but_not_month() -> None:
+    """Mirrors month-name dates ("July 31"): only day and year are checkable
+    numerals. The month component contributes no numeral at all, since no
+    payload field carries a bare month number to trace it against."""
+    matches = extract_numerals("Reference date 2026-08-07 confirmed.")
+
+    values = {(m.value, m.unit) for m in matches}
+    assert values == {(2026.0, "unspecified"), (7.0, "unspecified")}
+
+
+def test_genuine_negative_number_adjacent_to_iso_date_still_parses() -> None:
+    """The fix must not overcorrect: a real minus sign right next to an ISO
+    date is still a real minus sign."""
+    matches = extract_numerals("Yields fell -5.0 basis points on 2026-08-07.")
+
+    values = {(m.value, m.unit) for m in matches}
+    assert (-5.0, "basis_points") in values
+    assert (2026.0, "unspecified") in values
+    assert (7.0, "unspecified") in values
+    assert (-8.0, "unspecified") not in values
+    assert (-7.0, "unspecified") not in values
+
+
+def test_production_failure_fixture_pair_is_fully_traceable() -> None:
+    """The exact real NoteFacts/NoteNarrative pair from the 2026-08-11
+    production failure (run 31536688043) must trace cleanly once the ISO-date
+    fix is in place -- reconstructed verbatim, not hand-edited."""
+    facts = _load_iso_date_facts()
+    narrative = _load_iso_date_narrative()
+
+    assert find_untraceable_numerals(narrative, facts) == []
+    check_numeric_fidelity(narrative, facts)  # must not raise
 
 
 # --- extract_numerals unit tests ---
