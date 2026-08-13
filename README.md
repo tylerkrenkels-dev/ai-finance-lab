@@ -11,13 +11,16 @@ finance, and venture capital.
 
 ## Live output
 
-**[Daily Notes →](https://tylerkrenkels-dev.github.io/ai-finance-lab/notes/)**
+**[2026-08-12 note →](https://tylerkrenkels-dev.github.io/ai-finance-lab/notes/2026-08-12/)** · [All notes →](https://tylerkrenkels-dev.github.io/ai-finance-lab/notes/)
 
-The pipeline is built, deployed, and scheduled (weekdays, 06:30 AEST). No
-note has been published by the actual schedule yet — this section will be
-replaced with a screenshot of a real, unattended run once the first one
-lands, not the manually-triggered dry run used to prove the pipeline works
-end to end.
+The pipeline runs unattended every weekday morning (06:30 AEST, GitHub Actions
+cron) and has published multiple notes on the real schedule with no manual
+intervention. It has also weathered a live incident: on 2026-08-11 the
+numeric fidelity guard misread an ISO date as a negative number and, by
+design, blocked publication rather than risk a bad figure; the bug was fixed
+and the next scheduled run published normally. The 2026-08-12 note above
+also shows the staleness-marker behaviour working in production — several
+slower-moving source series are flagged stale rather than silently dropped.
 
 ## What this is
 
