@@ -1,0 +1,74 @@
+Source: Splunk, Inc. DEFM14A, filed 2023-10-30, accession 0001140361-23-050211
+https://www.sec.gov/Archives/edgar/data/1353283/000114036123050211/ny20011269x2_defm14a.htm
+Section: "Selected Transactions Analysis" (Qatalyst Partners)
+Retrieved: 2026-08-13 and independently re-verified via fresh live re-fetch on 2026-08-14.
+
+Announcement Date | Target | Acquiror | NTM Revenue Multiple | NTM EBITDA Multiple | NTM LFCF Multiple
+07/31/23 | New Relic, Inc. | Francisco Partners Management, L.P. & TPG Fund | 5.8x | 30.4x | 48.1x
+05/04/23 | Software AG | Silver Lake | 2.6x | 14.4x | —
+03/14/23 | Cvent Holding Corp. | Blackstone Inc. | 6.5x | 34.1x | —
+03/13/23 | Qualtrics | Silver Lake & CPP Investments | 7.1x | — | —
+03/13/23 | Momentive Global Inc. | STG Partners, LLC | 3.0x | 16.0x | 17.0x
+01/09/23 | Duck Creek Technologies | Vista Equity Partners Management, LLC | 7.0x | — | —
+01/20/23 | Magnet Forensics Inc. | Thoma Bravo | 9.8x | — | 49.3x
+12/12/22 | Coupa Software Inc. | Thoma Bravo | 8.4x | 37.5x | 39.3x
+05/26/22 | VMware, Inc. | Broadcom Inc. | 5.1x | 15.1x | 16.6x
+05/04/22 | Black Knight, Inc. | Intercontinental Exchange, Inc. | 9.7x | 19.7x | 28.2x
+04/11/22 | Datto Holding Corp. | Kaseya Limited & Insight Partners | 8.3x | 36.0x | —
+01/31/22 | Citrix Systems, Inc. | Evergreen Coast Capital Corporation & Vista Equity Partners | 5.1x | 16.0x | 17.9x
+12/20/21 | Cerner Corporation | Oracle Corporation | 4.8x | 14.1x | 23.9x
+12/07/21 | Mimecast Limited | Permira Holdings Limited | 8.8x | 32.1x | 40.6x
+11/07/21 | McAfee Corp. | Investor Group | 7.4x | 17.0x | 14.5x
+08/19/21 | Inovalon Holdings, Inc. | Nordic Capital Limited | 8.8x | 25.0x | 41.5x
+08/05/21 | Cornerstone OnDemand, Inc. | Clearlake Capital Group, L.P. | 5.9x | 18.8x | 18.4x
+06/28/21 | QAD Inc. | Thoma Bravo | 5.3x | — | —
+06/01/21 | Cloudera Inc. | Kohlberg Kravis Roberts & Co. L.P. & CD&R | 5.2x | 30.4x | 41.9x
+04/26/21 | Proofpoint, Inc. | Thoma Bravo | 9.4x | — | —
+03/08/21 | Pluralsight, Inc. | Vista Equity Partners Management, LLC | 8.4x | — | —
+12/21/20 | RealPage, Inc. | Thoma Bravo | 8.2x | 28.9x | 37.8x
+11/02/20 | Endurance International Group Holdings, Inc. | Clearlake Capital Group, L.P. | 2.6x | 9.9x | 12.0x
+12/17/19 | LogMeIn, Inc. | Francisco Partners | 3.4x | 10.7x | 14.0x
+12/04/19 | Instructure Holdings, Inc. | Thoma Bravo | 6.5x | — | —
+11/11/19 | Carbonite, Inc. | Open Text Corporation | 2.7x | 9.8x | 13.1x
+10/22/19 | Cision Ltd. | Platinum Equity | 3.5x | 10.0x | 12.9x
+10/14/19 | Sophos Ltd. | Thoma Bravo | 5.0x | 30.8x | 37.2x
+06/12/19 | Medidata Solutions, Inc. | Dassault Systèmes | 7.5x | 31.0x | —
+02/12/19 | Ellie Mae | Thoma Bravo | 6.8x | 31.0x | —
+02/04/19 | Ultimate Software Group, Inc. | Investor Group | 8.4x | 34.5x | —
+12/23/18 | MYOB Group Limited | Kohlberg Kravis Roberts & Co. L.P. | 4.9x | 12.1x | 27.5x
+11/11/18 | Apptio, Inc. | Vista Equity Partners Management, LLC | 7.0x | — | —
+11/11/18 | athenahealth, Inc. | Veritas Capital & Elliott Management Corporation | 3.9x | 13.8x | 34.0x
+10/28/18 | Red Hat, Inc. | International Business Machines Corp | 9.3x | 33.8x | 33.8x
+10/10/18 | Imperva, Inc. | Thoma Bravo | 5.1x | 45.1x | 32.2x
+03/06/18 | CommerceHub, Inc. | GTCR LLC & Sycamore Partners Management, L.P. | 8.6x | 20.5x | 26.8x
+01/29/18 | Callidus Software Inc. | SAP SE | 8.3x | — | —
+12/17/17 | Aconex Limited | Oracle Corporation | 8.1x | — | —
+11/27/17 | Barracuda Networks, inc. | Thoma Bravo | 3.6x | 18.8x | 21.5x
+10/23/17 | BroadSoft Inc. | Cisco Systems, Inc. | 4.6x | 18.3x | 26.6x
+12/14/16 | Neustar, Inc. | Golden Gate Capital | 2.3x | 5.0x | 5.9x
+11/20/16 | LifeLock, Inc. | Svmantec Corporation | 3.3x | 24.0x | 20.0x
+09/19/16 | Infoblox Inc. | Vista Equity Partners Management, LLC | 3.7x | 19.4x | 21.9x
+08/31/16 | Interactive Intelligence Group, Inc. | Genesys Telecommunications Laboratories, Inc. | 3.2x | — | —
+08/01/16 | Fleetmatics Group Limited | Verizon Communications Inc. | 6.3x | 18.4x | 35.6x
+07/07/16 | AVG Technologies N.V. | Avast Software | 3.2x | 9.0x | 13.2x
+06/02/16 | Qlik Technologies Inc. | Thoma Bravo | 3.6x | 32.1x | —
+11/02/15 | Constant Contact Inc. | Endurance International Group Holdings Inc. | 2.3x | 11.3x | 24.2x
+09/13/15 | Solera Holdings, Inc. | Vista Equity Partners Management, LLC | 5.2x | 13.4x | 20.4x
+06/15/15 | Dealertrack Technologies, Inc. | Cox Automotive Inc. | 4.1x | 19.4x | 20.0x
+04/07/15 | Informatica Corporation | Permira Holdings Limited & CPP Investments | 4.3x | 18.1x | 22.1x
+12/15/14 | Riverbed Technology Inc. | Thoma Bravo | 3.2x | 11.5x | 15.5x
+11/25/14 | Advanced Computer Software Group Ltd. | Vista Equity Partners Management, LLC | 3.5x | 14.9x | 19.2x
+09/29/14 | TIBCO Software Inc. | Vista Equity Partners | 3.9x | 17.4x | 36.5x
+12/20/13 | Responsys, Inc. | Oracle Corporation | 6.9x | — | —
+11/18/13 | UNIT4 NV | Advent International | 2.4x | 11.6x | —
+05/06/13 | BMC Software Inc. | Investor Group | 3.1x | 7.9x | 10.6x
+11/01/12 | JDA Software Group, Inc. | RedPrairie (New Mountain Capital) | 2.5x | 9.4x | 17.6x
+10/29/12 | OPNET Technologies, Inc. | Riverbed Technology, Inc. | 4.4x | 20.0x | 32.6x
+08/27/12 | Deltek, Inc. | Thoma Bravo | 2.6x | 9.5x | 14.3x
+07/02/12 | Quest Software, Inc. | Dell Technologies Inc. | 2.5x | 10.9x | 12.8x
+05/22/12 | Ariba, Inc. | SAP America, Inc. | 7.8x | 32.4x | 48.9x
+02/09/12 | Taleo Corporation | Oracle Corporation | 5.3x | 26.6x | 46.1x
+12/09/11 | Blue Coat Systems Inc. | Thoma Bravo | 2.0x | 11.6x | 18.8x
+10/24/11 | RightNow Technologies, Inc. | Oracle Corporation | 6.2x | 31.8x | —
+07/01/11 | Blackboard Inc. | Providence Equity | 3.2x | 12.6x | 16.2x
+04/26/11 | Lawson Software, Inc. | Infor (Golden Gate Capital) | 2.4x | 10.8x | 14.3x

@@ -1,0 +1,29 @@
+Source: Foot Locker, Inc. DEFM14A, filed 2025-07-11, accession 0001140361-25-025531
+https://www.sec.gov/Archives/edgar/data/850209/000114036125025531/ny20050977x1_defm14a.htm
+Section: "Selected Transactions Analysis" (Evercore)
+Retrieved: 2026-08-13 and independently re-verified via fresh live re-fetch on 2026-08-14.
+Note: source column order is "Acquirer | Target" (reversed vs. every other filing in this
+registry). No per-row multiple is disclosed; only the separate summary-stats block below is.
+Note: the source HTML uses a non-breaking space between month and year; that is
+normalized to a regular space below and in the registry, since it is a rendering
+artifact and not meaningful content. The curly apostrophes and curly quotation marks
+below (as in the Chico's and WSS rows) ARE preserved exactly as printed, not straightened,
+since those are meaningful source punctuation.
+
+Month and Year Announced | Acquirer | Target
+August 2024 | Frasers Group PLC | Accent Group Limited (minority stake)
+April 2024 | JD Sports Fashion PLC | Hibbett, Inc.
+September 2023 | Sycamore Partners | Chico’s FAS, Inc.
+May 2023 | Tempur Sealy International, Inc. | Mattress Firm Group Inc.
+August 2021 | Foot Locker | Eurostar, Inc. (“WSS”)
+March 2021 | Apollo Global Management, Inc. | The Michaels Companies, Inc.
+February 2021 | JD Sports Fashion PLC | DTLR Villa LLC
+March 2018 | JD Sports Fashion PLC | The Finish Line, Inc.
+June 2017 | Sycamore Partners | Staples, Inc.
+April 2017 | Bass Pro Group, LLC | Cabela’s Incorporated
+November 2015 | CVC Capital Partners and Canada Pension Plan Investment Board | Petco Animal Supplies, Inc.
+August 2015 | Sycamore Partners | Belk, Inc.
+December 2014 | BC Partners, Inc., La Caisse de depot et placement du Quebec, Longview Asset Management, StepStone | PetSmart, Inc.
+
+Benchmark | Mean | Median | Low | High
+TEV / LTM Adjusted EBITDA | 7.4x | 6.9x | 3.7x | 10.9x
