@@ -1,0 +1,21 @@
+Source: Chart Industries, Inc. DEFM14A, filed 2025-09-08, accession 0001193125-25-198320
+https://www.sec.gov/Archives/edgar/data/892553/000119312525198320/d52397ddefm14a.htm
+Section: "Selected Transactions Analysis" (Wells Fargo Securities, LLC)
+Retrieved: 2026-08-13 and independently re-verified via fresh live re-fetch on 2026-08-14.
+Note: no per-row multiple is disclosed in this table -- the 11.0x-13.0x EV/LTM EBITDA
+range Wells Fargo applied is stated only in the surrounding prose, not per-row.
+Note: the source HTML uses a non-breaking space around "&" in places (e.g. between
+"Sensors" and "& Instrumentation"); normalized to a regular space below, as elsewhere in
+this registry. Curly apostrophes (as in "Company's", "PLC's") are preserved as printed.
+
+Date Announced | Target | Acquiror
+June 2025 | Baker Hughes Company’s Precision Sensors & Instrumentation Business | Crane Company
+May 2025 | Johnson Matthey PLC’s Catalyst Technologies Business | Honeywell International, Inc.
+March 2025 | Sundyne LLC | Honeywell International, Inc.
+October 2024 | Barnes Group Inc. | Apollo Global Management, Inc.
+July 2024 | Dover Corporation’s Environmental Solutions Group | Terex Corporation
+July 2024 | Air Products and Chemical, Inc.’s LNG Technology and Equipment Business | Honeywell International, Inc.
+April 2024 | ChampionX Corporation | Schlumberger Limited
+November 2022 | Howden | Chart Industries, Inc.
+December 2021 | SPX Flow, Inc. | Lone Star Funds
+February 2021 | Aegion Corporation | New Mountain Capital, L.L.C.
