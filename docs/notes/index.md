@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-08-18 — US Rates Rise on Curve Steepening; Gold Retreats While Copper Weakens; AUD Strengthens Amid Carry Dynamics](2026-08-18.md)
 - [2026-08-17 — Gold Surges While Rates Rise; Commodity Strength Tempered by Stale Data](2026-08-17.md)
 - [2026-08-16 — Treasuries Rally on Softer Rate Outlook; Gold Surges While Equities Retreat](2026-08-16.md)
 - [2026-08-13 — Treasuries Retreat on Softer Momentum; Commodity Rally Broadens as Energy Surges](2026-08-13.md)
