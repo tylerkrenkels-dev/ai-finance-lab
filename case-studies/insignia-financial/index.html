@@ -1,0 +1,1188 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://tylerkrenkels-dev.github.io/ai-finance-lab/case-studies/insignia-financial/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../perpetual-live-tracker/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Insignia Financial - AI Finance Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#insignia-financial-ltd-asx-ifl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AI Finance Lab" class="md-header__button md-logo" aria-label="AI Finance Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Finance Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Insignia Financial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tylerkrenkels-dev/ai-finance-lab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI Finance Lab" class="md-nav__button md-logo" aria-label="AI Finance Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Finance Lab
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tylerkrenkels-dev/ai-finance-lab" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/llm-usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Case Studies (manual, non-Systems)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Case Studies (manual, non-Systems)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insignia Financial
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insignia Financial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ma-case-study-the-competitive-takeover-by-cc-capital-partners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M&amp;A Case Study: The Competitive Takeover by CC Capital Partners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-company-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Company Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deal-timeline-and-the-shape-of-the-contest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Deal Timeline and the Shape of the Contest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-valuation-across-the-bidding-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Valuation Across the Bidding Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-key-judgment-calls-advisory-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Key Judgment Calls (Advisory Perspective)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-this-demonstrates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What This Demonstrates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perpetual-live-tracker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Perpetual (live)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ma-case-study-the-competitive-takeover-by-cc-capital-partners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M&amp;A Case Study: The Competitive Takeover by CC Capital Partners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-company-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Company Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deal-timeline-and-the-shape-of-the-contest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Deal Timeline and the Shape of the Contest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-valuation-across-the-bidding-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Valuation Across the Bidding Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-key-judgment-calls-advisory-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Key Judgment Calls (Advisory Perspective)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-what-this-demonstrates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What This Demonstrates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="insignia-financial-ltd-asx-ifl">Insignia Financial Ltd (ASX: IFL)</h1>
+<h2 id="ma-case-study-the-competitive-takeover-by-cc-capital-partners">M&amp;A Case Study: The Competitive Takeover by CC Capital Partners</h2>
+<p><em>Prepared by Tyler Krenkels — self-directed case study, not affiliated with
+any party to the transaction. See <a href="../">Case Studies</a> for how figures
+in this write-up were sourced and why it sits outside the numeric fidelity
+invariant that governs the Systems.</em></p>
+<p><strong><a href="../assets/insignia-financial-ma-model.xlsx">Download the Excel model →</a></strong>
+— full deal timeline, financial summary, and valuation build with source
+citations and editable assumptions.</p>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>Insignia Financial Ltd, Australia's largest listed diversified wealth
+management group with roughly $340 billion in funds under management and
+administration (FUMA), was acquired by CC Capital Partners in a scheme of
+arrangement that completed in April 2026, ending a 16-month competitive
+process that at various points involved three private equity bidders: CC
+Capital, Bain Capital and Brookfield Asset Management.</p>
+<p>The final scheme price of $4.80 per share implied an equity value of
+approximately $3.3 billion and a 57% premium to the undisturbed share price
+of $3.06 on 11 December 2024. Notably, the final price came in below the
+~$5.00 per share peak reached during the competitive phase of the process in
+March 2025, after both Bain Capital and Brookfield withdrew. This case study
+reconstructs the process, values each stage of the bidding using a
+consistent EV/EBITDA framework, and sets out the judgment calls a Financial
+Sponsors or M&amp;A advisory team would have had to make at each stage.</p>
+<h2 id="1-company-overview">1. Company Overview</h2>
+<p>Insignia Financial (formerly IOOF, and prior to that incorporating the MLC
+business acquired from National Australia Bank in 2021) operated across four
+lines of business: Master Trust (superannuation), Wrap platforms, Advice
+(including the Shadforth network), and Asset Management (including
+multi-asset and fixed income capabilities). The FY25 result marked a turning
+point operationally: statutory NPAT returned to positive territory at $16.1
+million after a $185.3 million loss in FY24, driven by the completion of the
+MLC-NAB separation, resolution of legacy advice remediation costs, and
+delivery of cost optimisation targets.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>FY23</th>
+<th>FY24</th>
+<th>FY25</th>
+<th>TTM (Dec-25)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revenue ($m)</td>
+<td>1,948</td>
+<td>1,942</td>
+<td>1,581</td>
+<td>1,642</td>
+</tr>
+<tr>
+<td>EBITDA ($m)</td>
+<td>289.7</td>
+<td>130.1</td>
+<td>393.3</td>
+<td>412.7</td>
+</tr>
+<tr>
+<td>EBITDA Margin</td>
+<td>14.9%</td>
+<td>6.7%</td>
+<td>24.9%</td>
+<td>25.1%</td>
+</tr>
+<tr>
+<td>Statutory NPAT ($m)</td>
+<td>51.4</td>
+<td>(185.3)</td>
+<td>16.1</td>
+<td>111.7</td>
+</tr>
+<tr>
+<td>FUMA ($bn, period-end/avg)</td>
+<td>n/a</td>
+<td>319.6</td>
+<td>323.0 (avg)</td>
+<td>342.0</td>
+</tr>
+</tbody>
+</table>
+<p>The FY24 EBITDA trough reflects roughly $237 million of unusual items,
+principally advice remediation, legal settlements and transformation costs
+tied to the NAB separation, which is why FY25's clean result was central to
+how bidders underwrote forward earnings.</p>
+<h2 id="2-deal-timeline-and-the-shape-of-the-contest">2. Deal Timeline and the Shape of the Contest</h2>
+<p>The process ran through three distinct phases: an initial approach and
+price discovery period, a competitive three-way phase with exclusivity
+granted to two bidders simultaneously, and a final consolidation phase once
+two of the three bidders withdrew.</p>
+<p><strong>Phase 1 — Initial Approach (Dec 2024 – Jan 2025)</strong></p>
+<ul>
+<li>Bain Capital made an initial non-binding indicative proposal in December
+  2024, using the 11 December 2024 closing price of $3.06 as the last
+  undisturbed reference point.</li>
+<li>CC Capital and Bain Capital both revised proposals to $4.60 per share by
+  late January 2025.</li>
+</ul>
+<p><strong>Phase 2 — Three-Way Competitive Process (Feb – May 2025)</strong></p>
+<ul>
+<li>Brookfield Capital Partners (UK) entered the process in February 2025,
+  matching the $4.60 offer and securing limited due diligence access —
+  turning a two-horse race into a genuine three-way contest.</li>
+<li>By March 2025, Bain Capital and CC Capital had both sweetened their bids
+  to $5.00 per share, and Insignia's board signed exclusivity deeds with
+  both simultaneously, an unusual structure that kept optionality alive
+  while narrowing the field.</li>
+<li>The exclusivity period was extended to allow both remaining bidders to
+  arrange debt financing and complete due diligence.</li>
+</ul>
+<p><strong>Phase 3 — Consolidation and Binding Offer (May 2025 – Apr 2026)</strong></p>
+<ul>
+<li>Bain Capital withdrew in May 2025, citing macro uncertainty in global
+  markets as the reason it could not proceed to a binding proposal — a
+  reminder that even at exclusivity stage, financing and macro conditions
+  can still kill a deal.</li>
+<li>Brookfield did not match the improved terms and dropped out of
+  contention around the same time, leaving CC Capital as the sole remaining
+  bidder.</li>
+<li>Insignia entered a binding Scheme Implementation Deed with CC Capital
+  (via Daintree BidCo) on 22 July 2025, at $4.80 per share — below the
+  $5.00 peak reached during active competition.</li>
+<li>An independent expert deemed the offer fair and reasonable in February
+  2026; shareholders voted to approve in April 2026 with support in the
+  high-80s to high-90s percentage range; the Federal Court approved the
+  scheme on 16 April 2026; and the transaction completed on 28 April 2026,
+  with Insignia delisted from the ASX on 29 April 2026.</li>
+</ul>
+<h2 id="3-valuation-across-the-bidding-process">3. Valuation Across the Bidding Process</h2>
+<p>Applying a consistent EV/EBITDA framework across each stage of the process
+(full detail and formulas in the accompanying Excel model) shows how the
+implied multiple moved as the contest evolved:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Price/Share</th>
+<th>Equity Value</th>
+<th>EV</th>
+<th>EV/FY25 EBITDA</th>
+<th>Premium to Undisturbed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Undisturbed (11-Dec-24)</td>
+<td>$3.06</td>
+<td>$2,044m</td>
+<td>$2,477m</td>
+<td>6.3x</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Initial matched bids (Jan 2025)</td>
+<td>$4.60</td>
+<td>$3,073m</td>
+<td>$3,505m</td>
+<td>8.9x</td>
+<td>50.3%</td>
+</tr>
+<tr>
+<td>Peak competitive bid (Mar 2025)</td>
+<td>$5.00</td>
+<td>$3,340m</td>
+<td>$3,773m</td>
+<td>9.6x</td>
+<td>63.4%</td>
+</tr>
+<tr>
+<td>Final Scheme price (Jul 2025)</td>
+<td>$4.80</td>
+<td>$3,206m</td>
+<td>$3,639m</td>
+<td>9.3x</td>
+<td>56.9%</td>
+</tr>
+</tbody>
+</table>
+<p>The 56.9% premium implied by this framework closely matches Insignia's own
+disclosed 57% premium figure, which is a useful sense-check on the net debt
+and share count assumptions used (set out in the model's Valuation Analysis
+tab). The more interesting story is the ~4% price decline from the $5.00
+peak to the $4.80 final price: once the field narrowed from three bidders
+to one, CC Capital had materially less competitive tension to price
+against, and the final terms reflect that shift in bargaining power as much
+as any change in Insignia's underlying fundamentals.</p>
+<h2 id="4-key-judgment-calls-advisory-perspective">4. Key Judgment Calls (Advisory Perspective)</h2>
+<p>If advising Insignia's board through this process, several decision points
+stand out as genuinely difficult calls rather than obvious ones:</p>
+<ul>
+<li>Running dual exclusivity in March 2025 (signing exclusivity deeds with
+  both Bain and CC Capital simultaneously) kept competitive tension alive
+  for longer than a single-bidder exclusivity period would have, which
+  likely contributed to the $4.60 → $5.00 uplift. This is a structure worth
+  understanding in detail, since it's an unusual sequencing choice most
+  retail-facing M&amp;A commentary glosses over.</li>
+<li>Granting Brookfield due diligence access in February 2025, after two
+  bidders had already emerged, was a deliberate choice to maximise
+  competitive tension rather than move quickly to a binding deal with the
+  two most advanced parties — a trade-off between speed/certainty and price
+  maximisation.</li>
+<li>Once Bain withdrew citing macro uncertainty, the board's decision to
+  proceed with CC Capital at $4.80 rather than push harder or accept
+  execution risk by waiting for market conditions to improve reflects a
+  preference for certainty once competitive tension had genuinely broken
+  down — a defensible but not risk-free call, given the independent expert
+  still had to separately confirm fairness.</li>
+<li>The MAC (material adverse change) clause tied to a forward-looking
+  reference EBITDA, rather than a historic figure, as confirmed by CFO
+  David Chalmers on the FY25 earnings call, meant Insignia's near-term
+  earnings trajectory mattered directly to deal certainty, not just to the
+  headline valuation.</li>
+</ul>
+<h2 id="5-what-this-demonstrates">5. What This Demonstrates</h2>
+<p>This case study was built to demonstrate the mechanics that sit behind a
+Financial Sponsors or M&amp;A analyst's day-to-day work: reconstructing a
+multi-party competitive process from public disclosures, building a
+consistent valuation framework across bid stages, and forming a view on the
+judgment calls a board and its advisers actually had to make, rather than
+only reading the headline outcome. The accompanying Excel model contains
+the full deal timeline, financial summary and valuation build with source
+citations and editable assumptions.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>Insignia Financial FY25 Results Presentation and FY25 Full Year Result
+  ASX release, 21 August 2025</li>
+<li>Money Management, "Insignia returns to profit in FY25", 21 August 2025</li>
+<li>Insignia Financial 2Q25 and 4Q24 Quarterly Business Updates, ASX
+  announcements</li>
+<li>StockAnalysis.com, Insignia Financial (ASX:IFL) Income Statement,
+  FY21–FY25 and TTM to Dec-25 (S&amp;P Global Market Intelligence)</li>
+<li>Business News Australia, "Brookfield joins the fray in three-way $3
+  billion takeover battle for Insignia Financial", 5 February 2025</li>
+<li>Private Banker International, "Bain Capital exits Insignia Financial
+  takeover pursuit", 2025</li>
+<li>IFA, "Insignia agrees to $3.3bn CC Capital takeover bid", 30 October 2025</li>
+<li>TipRanks, Capital Brief and The Bull — coverage of independent expert
+  opinion, shareholder vote, Federal Court approval and scheme completion,
+  February–April 2026</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
