@@ -1,0 +1,50 @@
+---
+title: "{{ deal.target_name }} / {{ deal.acquiror_name }} — {{ table.analysis_label }}"
+date: {{ table.source.filed_date.isoformat() }}
+description: "{{ advisor_possessive }} {{ table.analysis_label }} from {{ target_possessive }} DEFM14A"
+status: "{{ deal.status }}"
+---
+
+# {{ deal.target_name }} / {{ deal.acquiror_name }}
+
+## Deal
+
+- **Target:** {{ deal.target_name }}
+- **Acquiror:** {{ deal.acquiror_name }}
+- **Status:** {{ "**Pending**" if deal.status == "pending" else "Completed" }}
+- **Announced:** {{ deal.announced_date.isoformat() }}
+{% if deal.completed_date %}
+- **Completed:** {{ deal.completed_date.isoformat() }}
+{% endif %}
+
+## Source
+
+- **Filing:** [{{ table.source.company_name }} DEFM14A]({{ table.source.document_url }}), filed {{ table.source.filed_date.isoformat() }}
+- **Section:** "{{ table.source.section_heading }}" ({{ table.advisor }})
+- **Accession:** {{ table.source.accession_number }}
+
+## {{ table.analysis_label }}
+
+{{ comp_table_header }}
+{{ comp_table_separator }}
+{% for line in comp_table_rows %}
+{{ line }}
+{% endfor %}
+
+{% if table.summary_stats %}
+### Summary Statistics
+
+{{ summary_stats_header }}
+{{ summary_stats_separator }}
+{% for line in summary_stats_rows %}
+{{ line }}
+{% endfor %}
+
+{% endif %}
+{% if table.footnotes %}
+## Footnotes
+
+{% for ref, text in table.footnotes.items() %}
+- **{{ ref }}** {{ text }}
+{% endfor %}
+{% endif %}
