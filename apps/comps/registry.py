@@ -570,6 +570,9 @@ TABLES: tuple[ComparableTransactionsTable, ...] = (
             ),
             ComparableTransactionRow(
                 target="LifeLock, Inc.",
+                # "Svmantec" verbatim as printed in the source filing (a typo in
+                # Qatalyst's original table, not ours) -- confirmed against a live
+                # re-fetch of the filing itself, not just the transcribed fixture.
                 acquiror="Svmantec Corporation",
                 announcement_period_raw="11/20/16",
                 announcement_year=2016,
