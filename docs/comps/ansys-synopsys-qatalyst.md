@@ -1,0 +1,54 @@
+---
+title: "ANSYS, Inc. / Synopsys, Inc. — Selected Transactions Analysis"
+date: 2024-04-17
+description: "Qatalyst Partners' Selected Transactions Analysis from ANSYS, Inc.'s DEFM14A"
+status: "completed"
+---
+
+# ANSYS, Inc. / Synopsys, Inc.
+
+## Deal
+
+- **Target:** ANSYS, Inc.
+- **Acquiror:** Synopsys, Inc.
+- **Status:** Completed
+- **Announced:** 2024-01-15
+- **Completed:** 2025-07-17
+
+## Source
+
+- **Filing:** [ANSYS, Inc. DEFM14A](https://www.sec.gov/Archives/edgar/data/1013462/000114036124020334/ny20025601x1_defm14a.htm), filed 2024-04-17
+- **Section:** "Selected Transactions Analysis" (Qatalyst Partners)
+- **Accession:** 0001140361-24-020334
+
+## Selected Transactions Analysis
+
+| Announcement | Target | Acquiror | NTM LFCF MULTIPLE |
+| --- | --- | --- | --- |
+| 11/14/16 | Mentor Graphics Corporation | Siemens Industry, Inc. | 46.6x |
+| 08/19/21 | Inovalon Holdings, Inc. | Nordic Capital | 41.5x |
+| 12/07/21 | Mimecast Limited | Permira Holdings Limited | 40.6x |
+| 12/12/22 | Coupa Software Incorporated | Thoma Bravo | 39.3x |
+| 12/21/20 | RealPage, Inc. | Thoma Bravo | 37.8x |
+| 10/28/18 | Red Hat Inc. | IBM Corp | 33.8x |
+| 09/21/22 | AVEVA Group plc | Schneider Electric SE | 31.9x |
+| 09/21/23 | Splunk Inc. | Cisco Systems Inc. | 29.3x |
+| 05/04/22 | Black Knight, Inc. | Intercontinental Exchange, Inc. | 28.2x |
+| 03/06/18 | CommerceHub, Inc. | GTCR and Sycamore Partners | 26.8x |
+| 02/02/15 | Advent Software, Inc. | SS&C Technologies Holdings, Inc. | 24.1x |
+| 12/20/21 | Cerner Corporation | Oracle Corporation | 23.9x |
+| 04/07/15 | Informatica Corp | Permira Holdings Limited | 22.1x |
+| 09/19/16 | Infoblox Inc. | Vista Equity Partners | 21.9x |
+| 06/15/15 | Dealertrack Technologies, Inc. | Cox Automotive, Inc. | 20.0x |
+| 08/05/21 | Cornerstone OnDemand, Inc. | Clearlake Capital Group, L.P. | 18.4x |
+| 01/31/22 | Citrix Systems, Inc. | Vista Equity Partners Management, LLC and Evergreen Coast Capital Corp. | 17.9x |
+| 05/26/22 | VMware, Inc. | Broadcom Inc. | 16.6x |
+| 07/01/11 | Blackboard Inc. | Providence Equity Partners L.L.C. | 16.2x |
+| 12/15/14 | Riverbed Technology, Inc. | Thoma Bravo | 15.5x |
+| 11/07/21 | McAfee Corp. | Advent, Permira, Crosspoint Capital, CPP Investments, GIC and ADIA | 14.5x |
+| 12/17/19 | LogMeIn, Inc. | Francisco Partners Management, L.P. | 14.0x |
+| 07/07/16 | AVG Technologies N.V. | Avast Software B.V. | 13.2x |
+| 07/02/12 | Quest Software, Inc. | Dell Inc. | 12.8x |
+| 05/06/13 | BMC Software Inc. | Bain Capital, Golden Gate Capital, GIC Special Investments Pte Ltd., and Insight Venture Partners | 10.6x |
+| 11/02/15 | Neustar, Inc. | Golden Gate Capital | 5.9x |
+| 06/12/19 | Medidata Solutions, Inc. | Dassault Systèmes SE | — |
