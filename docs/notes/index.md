@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-08-24 — Gold Surges While Rates Rise; Australian Assets Mixed Amid Stale Data](2026-08-24.md)
 - [2026-08-23 — Gold Surges While Rates Steepen; Commodity Strength Tempered by Stale Data](2026-08-23.md)
 - [2026-08-20 — Gold Surges While Long-End Rates Retreat; Commodity Strength Tempered by Stale Data](2026-08-20.md)
 - [2026-08-19 — Gold Surges While Oil Rallies; US Rates Steady as Curve Flattens](2026-08-19.md)
