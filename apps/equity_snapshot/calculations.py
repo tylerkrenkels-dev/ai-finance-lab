@@ -55,12 +55,22 @@ def _round_or_none(value: float | None, digits: int = _ROUND_DIGITS) -> float | 
     return value if value is None else round(value, digits)
 
 
-def _is_sector_inapplicable(fundamentals: RawFundamentals, field_name: str) -> bool:
+def is_sector_inapplicable(fundamentals: RawFundamentals, field_name: str) -> bool:
+    """True if `field_name` is economically meaningless for fundamentals.sector.
+
+    Public so payload.py can explain a suppressed field in a data_warning
+    without re-implementing this policy table a second time.
+    """
     suppressed = _SECTOR_INAPPLICABLE_FIELDS.get(fundamentals.sector or "", frozenset())
     return field_name in suppressed
 
 
-def _currencies_match(fundamentals: RawFundamentals) -> bool:
+def currencies_match(fundamentals: RawFundamentals) -> bool:
+    """True if fundamentals.currency == fundamentals.financial_currency.
+
+    Public for the same reason as is_sector_inapplicable: payload.py needs it
+    to explain a currency-gated field, not to re-decide the gate itself.
+    """
     return fundamentals.currency == fundamentals.financial_currency
 
 
@@ -118,7 +128,7 @@ def valuation_multiples(fundamentals: RawFundamentals) -> ValuationMultiples:
     confirmed safe under a currency mismatch.
     """
     enterprise_to_ebitda = (
-        fundamentals.enterprise_to_ebitda if _currencies_match(fundamentals) else None
+        fundamentals.enterprise_to_ebitda if currencies_match(fundamentals) else None
     )
     return ValuationMultiples(
         trailing_pe=fundamentals.trailing_pe,
@@ -136,7 +146,7 @@ def profitability_metrics(fundamentals: RawFundamentals) -> ProfitabilityMetrics
     """
     gross_margins = (
         None
-        if _is_sector_inapplicable(fundamentals, "gross_margins")
+        if is_sector_inapplicable(fundamentals, "gross_margins")
         else fundamentals.gross_margins
     )
     return ProfitabilityMetrics(
