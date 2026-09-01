@@ -32,6 +32,12 @@ staleness-only warnings never created. SYSTEM_PROMPT has a paragraph
 specifically targeting this, not just macro_note's generic data_warnings
 paragraph reused verbatim.
 
+A second such risk: EquitySnapshot.market_cap is a raw integer (340878950400),
+and the natural prose form ("~A$341 billion") is a scale-and-round the model
+must not perform. payload.py carries a pre-computed market_cap_display string
+for exactly this figure, and SYSTEM_PROMPT has a paragraph directing the model
+to reproduce that string verbatim rather than transform the integer itself.
+
 TickerNarrative has no bullets, unlike NoteNarrative: a macro note covers
 genuinely separate topics (rates, FX, commodities) that read better itemized;
 one ticker's ~7 valuation/profitability figures form one coherent story, not
@@ -95,6 +101,14 @@ _PARAGRAPHS = [
         "must always be written in digit form exactly as they appear in the payload, "
         'never spelled out as words (for example "24.76," never "twenty-four point '
         'seven six").'
+    ),
+    (
+        "The payload contains a market_cap_display field: a pre-formatted, human-readable "
+        'rendering of the market capitalization, for example "AUD 340.88 billion". If you '
+        "mention market capitalization in prose, reproduce the market_cap_display string "
+        "exactly as given. Do not scale, round, abbreviate, or otherwise transform the raw "
+        "market_cap integer yourself -- that is arithmetic you have not been given the "
+        "result of, and the market_cap_display string is the only permitted form."
     ),
     (
         "If the payload's data_warnings list is non-empty, you may mention that a figure "

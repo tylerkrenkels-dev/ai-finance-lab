@@ -127,6 +127,22 @@ def test_generate_system_prompt_guards_against_currency_bridging() -> None:
     assert "data_warnings" in system
 
 
+def test_generate_system_prompt_tells_model_to_reproduce_market_cap_display_verbatim() -> None:
+    # market_cap is a raw integer; "~A$341 billion" is a scale-and-round the model
+    # must not perform. payload.py carries a canonical market_cap_display string
+    # and the prompt must direct the model to reproduce it, not transform the int.
+    mock_client = MagicMock()
+    mock_client.messages.create.return_value = _narrative_response(_narrative())
+    generator = NarrativeGenerator(settings=_settings(), client=mock_client)
+
+    generator.generate(_snapshot())
+
+    _, kwargs = mock_client.messages.create.call_args
+    system = kwargs["system"]
+    assert "market_cap_display" in system
+    assert "reproduce the market_cap_display string exactly as given" in system
+
+
 def test_generate_prompt_includes_snapshot_as_json() -> None:
     mock_client = MagicMock()
     mock_client.messages.create.return_value = _narrative_response(_narrative())

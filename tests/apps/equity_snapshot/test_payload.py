@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 from apps.equity_snapshot.calculations import ProfitabilityMetrics, ValuationMultiples
 from apps.equity_snapshot.payload import EquitySnapshot, build_equity_snapshot
 from apps.equity_snapshot.sources import RawFundamentals
-from tests.apps.equity_snapshot.test_calculations import _BHP, _JPM
+from tests.apps.equity_snapshot.test_calculations import _AAPL, _BHP, _CBA, _JPM
 
 # SYNTHETIC -- not real market data, unlike _BHP/_JPM above (imported from
 # test_calculations.py, both real live-fetched values). Based on _AAPL's real
@@ -66,6 +66,7 @@ def test_build_equity_snapshot_bhp_full_field_set() -> None:
         currency="AUD",
         current_price=67.1,
         market_cap=340878950400,
+        market_cap_display="AUD 340.88 billion",
         as_of=datetime.fromtimestamp(1787532562, tz=UTC),
         valuation=ValuationMultiples(
             trailing_pe=24.76, forward_pe=18.62, enterprise_to_ebitda=None
@@ -105,6 +106,7 @@ def test_build_equity_snapshot_jpm_full_field_set() -> None:
         currency="USD",
         current_price=351.58,
         market_cap=934565052416,
+        market_cap_display="USD 934.57 billion",
         as_of=datetime.fromtimestamp(1787342402, tz=UTC),
         valuation=ValuationMultiples(
             trailing_pe=15.06, forward_pe=14.06, enterprise_to_ebitda=None
@@ -150,3 +152,60 @@ def test_generic_missing_field_warning_for_a_field_with_no_specific_cause() -> N
     all_warnings = " ".join(result.data_warnings)
     assert "Financial Services" not in all_warnings
     assert "currency" not in all_warnings
+
+
+# --- market_cap_display: one canonical, Python-computed form for the narrative
+# to reproduce verbatim (see payload._format_market_cap). Expected strings below
+# are hand-computed: raw / 10**scale, two decimal places, trailing zeros
+# stripped, ISO 4217 code prefixed.
+
+
+def test_market_cap_display_bhp_real_fixture_billions() -> None:
+    # 340878950400 / 1e9 = 340.8789504 -> "340.88"
+    assert build_equity_snapshot(_BHP).market_cap_display == "AUD 340.88 billion"
+
+
+def test_market_cap_display_jpm_real_fixture_rounds_up() -> None:
+    # 934565052416 / 1e9 = 934.565052416 -> rounds up to "934.57"
+    assert build_equity_snapshot(_JPM).market_cap_display == "USD 934.57 billion"
+
+
+def test_market_cap_display_aapl_real_fixture_trillions() -> None:
+    # 4514709504000 >= 1e12 -> / 1e12 = 4.514709504 -> "4.51"
+    assert build_equity_snapshot(_AAPL).market_cap_display == "USD 4.51 trillion"
+
+
+def test_market_cap_display_cba_real_fixture_billions() -> None:
+    # 259777396736 / 1e9 = 259.777396736 -> "259.78"
+    assert build_equity_snapshot(_CBA).market_cap_display == "AUD 259.78 billion"
+
+
+def _raw_with_market_cap(market_cap: int | None, currency: str = "USD") -> RawFundamentals:
+    """A real fixture (_JPM) with only market_cap (and optionally currency)
+    overridden -- for the _format_market_cap edge cases no real investigated
+    ticker happens to hit. Clearly synthetic, like _SYNTHETIC_MISSING_FIELDS."""
+    return _JPM.model_copy(update={"market_cap": market_cap, "currency": currency})
+
+
+def test_market_cap_display_strips_trailing_zero() -> None:
+    # 340900000000 / 1e9 = 340.9 exactly -> "340.90" -> "340.9", not "340.90"
+    result = build_equity_snapshot(_raw_with_market_cap(340_900_000_000))
+    assert result.market_cap_display == "USD 340.9 billion"
+
+
+def test_market_cap_display_strips_to_bare_integer() -> None:
+    # 500000000000 / 1e9 = 500.0 -> "500.00" -> "500", no decimal point
+    result = build_equity_snapshot(_raw_with_market_cap(500_000_000_000))
+    assert result.market_cap_display == "USD 500 billion"
+
+
+def test_market_cap_display_million_is_the_floor_scale() -> None:
+    # Below 1e9: million is the smallest scale word. 8500000 / 1e6 = 8.5.
+    result = build_equity_snapshot(_raw_with_market_cap(8_500_000))
+    assert result.market_cap_display == "USD 8.5 million"
+
+
+def test_market_cap_display_is_none_when_market_cap_is_none() -> None:
+    result = build_equity_snapshot(_raw_with_market_cap(None))
+    assert result.market_cap is None
+    assert result.market_cap_display is None

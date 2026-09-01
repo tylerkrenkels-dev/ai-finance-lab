@@ -23,6 +23,14 @@ is_sector_inapplicable/currencies_match say that's why, and a generic
 "not available" message otherwise (a field genuinely absent from yfinance).
 This reuses calculations.py's policy decisions rather than re-deriving them,
 so the policy stays defined in exactly one place.
+
+market_cap_display is a formatted string ("AUD 340.88 billion") computed once
+in _format_market_cap. It exists so the narrative has a single canonical form
+to reproduce verbatim: without it, a model turning the raw 340878950400 into
+"~A$341 billion" is doing arithmetic the core invariant forbids, and a numeric
+guard would either have to block that correct-looking prose or accept a whole
+family of derived roundings. Rounding once, here in Python, is the same fix
+macro_note applied when an analogous multi-form figure caused false guard hits.
 """
 
 from datetime import datetime
@@ -39,6 +47,10 @@ from apps.equity_snapshot.calculations import (
 )
 from apps.equity_snapshot.sources import RawFundamentals
 
+_TRILLION = 1_000_000_000_000
+_BILLION = 1_000_000_000
+_MILLION = 1_000_000
+
 
 class EquitySnapshot(BaseModel):
     """Complete per-ticker snapshot payload -- the only input a guarded
@@ -52,6 +64,11 @@ class EquitySnapshot(BaseModel):
     currency: str  # trading currency -- labels current_price/market_cap below
     current_price: float
     market_cap: int | None
+    # Pre-formatted, human-readable rendering of market_cap (e.g. "AUD 340.88
+    # billion"), computed once in _format_market_cap so the narrative has exactly
+    # one canonical figure to reproduce verbatim -- not a family of model-derived
+    # roundings of the raw integer. None exactly when market_cap is None.
+    market_cap_display: str | None
     as_of: datetime
 
     valuation: ValuationMultiples
@@ -76,11 +93,36 @@ def build_equity_snapshot(fundamentals: RawFundamentals) -> EquitySnapshot:
         currency=fundamentals.currency,
         current_price=fundamentals.current_price,
         market_cap=fundamentals.market_cap,
+        market_cap_display=_format_market_cap(fundamentals.market_cap, fundamentals.currency),
         as_of=fundamentals.quote_as_of,
         valuation=valuation,
         profitability=profitability,
         data_warnings=_build_warnings(fundamentals, valuation, profitability),
     )
+
+
+def _format_market_cap(market_cap: int | None, currency: str) -> str | None:
+    """Human-readable market cap (e.g. "AUD 340.88 billion") for the narrative to
+    reproduce verbatim.
+
+    Computed once here so there is exactly one canonical figure the numeric
+    fidelity guard can trace against, rather than a family of model-derived
+    roundings of the raw integer. Mirrors the "round once at the boundary"
+    discipline calculations.py already applies to every ratio: two decimal
+    places (its _ROUND_DIGITS), trailing zeros stripped, ISO 4217 code as the
+    prefix so there is no A$/US$/NZ$ ambiguity and no symbol table to maintain.
+    None exactly when market_cap is None.
+    """
+    if market_cap is None:
+        return None
+    if market_cap >= _TRILLION:
+        scaled, word = market_cap / _TRILLION, "trillion"
+    elif market_cap >= _BILLION:
+        scaled, word = market_cap / _BILLION, "billion"
+    else:
+        scaled, word = market_cap / _MILLION, "million"
+    number = f"{scaled:.2f}".rstrip("0").rstrip(".")
+    return f"{currency} {number} {word}"
 
 
 def _build_warnings(
