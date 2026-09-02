@@ -13,6 +13,7 @@ nav:
   - Home: index.md
   - Daily Notes: notes/index.md
   - Deal Comps: comps/index.md
+  - Equity Snapshots: equities/index.md
   - Architecture: architecture/overview.md
   - Standards:
       - Engineering: standards/engineering.md
