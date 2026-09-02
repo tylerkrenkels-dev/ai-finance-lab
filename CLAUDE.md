@@ -8,14 +8,19 @@ Operating instructions for Claude Code in this repository. Read this fully at th
 
 This repository is the **AI Finance Lab**: a small set of production-grade AI systems for financial research, built by a final-year Finance and Financial Mathematics student to demonstrate applied AI engineering to employers in investment banking, global markets, quantitative finance and venture capital.
 
-Four systems, built strictly in sequence:
+Systems, in the order built:
 
-1. **Macro Research Digest** — automated daily pre-market macro note, published to GitHub Pages *(current phase)*
-2. **Filings Intelligence** — SEC and ASX retrieval with citations and year-over-year risk factor diffing *(not started)*
-3. **Deal & Comps Platform** — Australian transaction database and precedent comparables *(not started)*
-4. **Research Agent** — tool-calling agent orchestrating the three systems above *(not started)*
+1. **Macro Research Digest** — automated daily pre-market macro note, published to GitHub Pages *(live, weekday cron)*
+2. **M&A Comparables Reference** — precedent-transaction tables transcribed from real SEC DEFM14A filings, every figure traceable to a cited source *(live)*
+3. **Equity Snapshot Generator** — weekly valuation and profitability snapshots for a fixed watchlist, on a weekly cron *(live)*
+4. **Research Agent** — tool-calling agent orchestrating the systems above *(not started)*
 
-**The success criterion is not lines of code. It is a system that runs unattended every weekday for months, and code the owner can explain to an interviewer without notes.** Optimise every decision for those two things.
+The original blueprint had *Filings Intelligence* (SEC/ASX retrieval with
+year-over-year risk-factor diffing) as system 2. It was deprioritised in favour
+of systems 2 and 3 above, built in its place. Systems are still built roughly
+one at a time — each proven live before the next is started.
+
+**The success criterion is not lines of code. It is a system that runs unattended on its schedule for months, and code the owner can explain to an interviewer without notes.** Optimise every decision for those two things.
 
 ---
 
@@ -62,7 +67,7 @@ Do not create `core/data/`, `core/llm/`, `core/eval/`, or any other shared modul
 
 ---
 
-## 4. Layer discipline (current phase: `apps/macro_note/`)
+## 4. Layer discipline
 
 Dependencies flow one way only.
 
@@ -144,9 +149,24 @@ If something in this file conflicts with an instruction in the session, follow t
 
 ## 10. Current state
 
-**Phase:** 1 — Macro Research Digest MVP
-**Definition of done:** five consecutive weekday notes published with zero manual intervention, every figure traceable to a named source series, the numeric guard proven to block a fabricated figure, and a simulated source outage handled with a visible staleness marker.
-**After that:** no new features for thirty days. Let it run.
+**Live:** three systems running unattended — Macro Research Digest (weekday
+cron), M&A Comparables Reference (static, hand-curated), Equity Snapshot
+Generator (weekly cron). Research Agent not started.
+
+**Macro Research Digest** met its Phase 1 definition of done — five consecutive
+weekday notes with zero manual intervention, every figure traceable to a named
+source series, the numeric guard proven to block a fabricated figure, a
+simulated source outage handled with a visible staleness marker — and has
+published on its weekday cron since 2026-08-06. It is now feature-frozen:
+maintenance and incident response only.
+
+**On "no new features for thirty days":** that was a Phase 1 device to force a
+longevity proof, and it has been served in substance — the Digest has run
+untouched for weeks while the two newer systems were built as separate apps.
+The rule now reads per-system: let each shipped system prove itself before it
+gains features; no repo-wide freeze.
+
+**Next:** the Research Agent, or a deliberate hold. No fixed schedule.
 
 ### Secrets requiring rotation
 

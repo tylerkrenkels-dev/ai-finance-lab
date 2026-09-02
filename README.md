@@ -13,6 +13,8 @@ finance, and venture capital.
 
 **[2026-08-12 note →](https://tylerkrenkels-dev.github.io/ai-finance-lab/notes/2026-08-12/)** · [All notes →](https://tylerkrenkels-dev.github.io/ai-finance-lab/notes/)
 
+Also live: [M&A Comparables →](https://tylerkrenkels-dev.github.io/ai-finance-lab/comps/) · [Equity Snapshots →](https://tylerkrenkels-dev.github.io/ai-finance-lab/equities/)
+
 The pipeline runs unattended every weekday morning (06:30 AEST, GitHub Actions
 cron) and has published multiple notes on the real schedule with no manual
 intervention. It has also weathered a live incident: on 2026-08-11 the
@@ -24,11 +26,14 @@ slower-moving source series are flagged stale rather than silently dropped.
 
 ## What this is
 
-Four small, production-grade AI systems for financial research, built in
-strict sequence. The current phase is the **Macro Research Digest** — an
-automated daily pre-market macro note, published unattended every weekday.
+Small, production-grade AI systems for financial research. Three are live and
+running unattended: the **Macro Research Digest** (a daily pre-market macro
+note), the **M&A Comparables Reference** (precedent-transaction tables cited to
+real SEC filings), and the **Equity Snapshot Generator** (weekly valuation and
+profitability snapshots for a fixed watchlist). A tool-calling **Research
+Agent** over the three remains planned.
 
-The invariant behind all four: **language models never produce numbers in
+The invariant behind every one: **language models never produce numbers in
 this codebase.** Every figure is computed in Python and validated before a
 model ever sees it — the model narrates, it does not calculate. See
 [LLM Usage Standards](https://tylerkrenkels-dev.github.io/ai-finance-lab/standards/llm-usage/)
@@ -39,9 +44,14 @@ for how this is enforced mechanically, not as a prompting convention.
 | System | What it does | Status |
 |---|---|---|
 | Macro Research Digest | Automated daily pre-market macro note | live |
-| Filings Intelligence | SEC/ASX retrieval with citations | planned |
-| Deal & Comps Platform | Australian precedent transaction database | planned |
-| Research Agent | Tool-calling agent orchestrating the above | planned |
+| M&A Comparables Reference | Precedent-transaction tables transcribed from real SEC filings, every figure cited | live |
+| Equity Snapshot Generator | Weekly valuation & profitability snapshots for a fixed watchlist | live |
+| Research Agent | Tool-calling agent orchestrating the systems above | planned |
+
+The original blueprint had a fourth system, *Filings Intelligence* (SEC/ASX
+retrieval with risk-factor diffing) as phase 2; it was deprioritised in favour
+of the M&A Comparables Reference and Equity Snapshot Generator, which shipped
+in its place.
 
 Alongside the automated Systems above, this repo also hosts manual M&A/Financial
 Sponsors case studies — see [Case Studies](https://tylerkrenkels-dev.github.io/ai-finance-lab/case-studies/).
@@ -58,8 +68,9 @@ uv sync
 cp .env.example .env
 # fill in ANTHROPIC_API_KEY and FRED_API_KEY
 
-uv run pytest -m "not network"          # run the test suite
-uv run python -m apps.macro_note.main   # run the full pipeline once, for today
+uv run pytest -m "not network"              # run the test suite
+uv run python -m apps.macro_note.main       # macro note pipeline, for today
+uv run python -m apps.equity_snapshot.main  # equity snapshot pipeline, full watchlist
 ```
 
 ## Architecture
@@ -81,13 +92,16 @@ Full writeup: [Architecture Overview](https://tylerkrenkels-dev.github.io/ai-fin
 
 ## Roadmap
 
-1. **Macro Research Digest** — automated daily pre-market macro note (current phase, live)
-2. **Filings Intelligence** — SEC and ASX retrieval with citations and year-over-year risk factor diffing
-3. **Deal & Comps Platform** — Australian transaction database and precedent comparables
-4. **Research Agent** — tool-calling agent orchestrating the three systems above
+- **Macro Research Digest** — automated daily pre-market macro note. *Live*, unattended on a weekday cron.
+- **M&A Comparables Reference** — precedent-transaction tables transcribed from real SEC filings, every figure traceable to a cited source. *Live.*
+- **Equity Snapshot Generator** — weekly valuation and profitability snapshots for a fixed watchlist. *Live*, on a weekly cron.
+- **Research Agent** — a tool-calling agent orchestrating the systems above. *Planned.*
 
-Built strictly in sequence. After Phase 1's five-day unattended streak, no
-new features for thirty days before Phase 2 begins.
+The original blueprint sequenced four phases, with a *Filings Intelligence*
+system (SEC/ASX retrieval with year-over-year risk-factor diffing) as phase 2.
+That was deprioritised in favour of the M&A Comparables Reference and Equity
+Snapshot Generator, which shipped in its place. Each system is still built and
+stabilised before the next is started.
 
 ## Documentation
 
