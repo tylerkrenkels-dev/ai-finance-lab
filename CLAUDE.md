@@ -152,7 +152,8 @@ If something in this file conflicts with an instruction in the session, follow t
 
 - **`MACRO_NOTE_PUBLISH_PAT`** — a fine-grained personal access token, scoped to this
   repository only (Contents: Read and write, Pull requests: Read and write, nothing
-  else). Used by `macro-note.yml` to push the daily note's branch and open its PR
+  else). Shared by `macro-note.yml` and `equity-snapshot.yml` to push an automated
+  branch and open its PR
   as a real GitHub identity rather than the workflow's default `GITHUB_TOKEN` --
   required because `main` is protected by a ruleset demanding a PR plus a passing
   `ci` status check, and GitHub does not let events authored by the ephemeral
