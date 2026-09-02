@@ -1,0 +1,165 @@
+name: equity-snapshot
+
+on:
+  schedule:
+    # 07:15 UTC every Saturday = 17:15 AEST / 18:15 AEDT Sat. Weekly, not daily:
+    # the spec is a fixed 3-5 ticker watchlist refreshed over time, and the
+    # valuation/profitability figures barely move week to week. Saturday
+    # specifically because by 07:15 UTC both the US Friday session (closes
+    # 20:00-21:00 UTC) and the AU Friday session (closes ~06:00 UTC Fri) have
+    # been shut for hours -- every ticker's yfinance .info reflects a settled
+    # Friday close, so all five pages get a consistent as_of date. A weekday run
+    # risks catching one market mid-session while the other is closed, giving
+    # mismatched as_of dates and partial intraday .info. ':15' not ':00' to
+    # avoid GitHub's heavily-contended top-of-hour cron slot. Day-of-week 6 is
+    # unambiguous here (still Saturday in every AU timezone), unlike
+    # macro-note.yml's UTC window; the AEST/AEDT drift is immaterial for a run
+    # that happens when nothing is trading.
+    - cron: '15 7 * * 6'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run the pipeline without committing, publishing, or redeploying docs'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+  pull-requests: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      # No actions/cache step here, deliberately -- this is not a copy-paste gap
+      # from macro-note.yml. That workflow caches data/ because macro-note has a
+      # DuckDB observation store there (gitignored, never committed) and its
+      # resilience design falls back to "the last stored value" in it; the cache
+      # is that store's only cross-run persistence. equity_snapshot has no store.
+      # Its fetch-failure fallback is the previously-published docs/equities/
+      # page, which is already committed to main and restored by the checkout
+      # above -- cross-run persistence for free. build_equity_snapshot needs a
+      # live RawFundamentals and there is no code path that reads a cached
+      # anything, so a cache step would cache a directory this system never
+      # creates. (setup-uv's enable-cache is the unrelated uv package cache.)
+
+      # continue-on-error: a partial failure (one ticker's fetch/narrative/guard
+      # fails) makes main.py exit non-zero *after* writing the healthy pages, and
+      # those pages should still publish -- "publish what passed, then go red" is
+      # the design. So capture the outcome without aborting the job; the publish
+      # steps below run regardless (guarded only by "is anything staged"), and
+      # the final step reds the run if the pipeline exited non-zero.
+      - name: Run pipeline
+        id: pipeline
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: uv run python -m apps.equity_snapshot.main
+
+      - name: Upload rendered snapshots (dry run only)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: equity-snapshot-dry-run
+          path: docs/equities/*.md
+
+      # main is protected by a ruleset requiring a PR plus a passing "ci" status
+      # check -- a direct `git push` to main is rejected outright (GH013). The fix
+      # isn't a bypass: it's routing the bot through the same PR-plus-CI path a
+      # human push takes. That needs a real, non-GITHUB_TOKEN identity for the
+      # push and PR-open, because GitHub deliberately does not let events authored
+      # by the ephemeral GITHUB_TOKEN fire other workflows' pull_request triggers
+      # -- with GITHUB_TOKEN alone, ci.yml's pull_request trigger would never
+      # fire, the required "ci" check would never report, and the PR would block
+      # forever. MACRO_NOTE_PUBLISH_PAT is scoped to this repo only (Contents RW,
+      # Pull requests RW, nothing else) and is shared by macro-note.yml and this
+      # workflow as a real identity for the push and PR-open. Expires 2027-08-06;
+      # on expiry the pipeline itself still runs clean and this step fails with
+      # "Bad credentials" / "Authentication failed" -- regenerate with the same
+      # scope and update the secret (see CLAUDE.md Sec.10).
+      - name: Push snapshots to a branch and open PR
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        id: publish_pr
+        env:
+          GH_TOKEN: ${{ secrets.MACRO_NOTE_PUBLISH_PAT }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          RUN_DATE=$(date -u +%F)
+          BRANCH="automated/equity-snapshot-${RUN_DATE}-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
+          git add docs/equities/
+          if git diff --staged --quiet; then
+            echo "No snapshot changes to publish."
+            exit 0
+          fi
+          git commit -m "docs(equity-snapshot): publish snapshots for ${RUN_DATE}"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:refs/heads/${BRANCH}"
+          PR_URL=$(gh pr create --title "docs(equity-snapshot): publish snapshots for ${RUN_DATE}" \
+            --body "Automated publish for ${RUN_DATE}." --base main --head "$BRANCH")
+          echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
+
+      # The "ci" check fired above is real -- triggered by the PAT-authored PR --
+      # so waiting for it and merging only once it passes satisfies the ruleset on
+      # its own terms. Uses the default GITHUB_TOKEN, not the PAT: merging a PR
+      # that already satisfies every required rule needs no special identity.
+      #
+      # `gh pr checks --watch` errors out immediately with "no checks reported" if
+      # called before any check has registered on the PR (observed live for
+      # macro-note.yml on 2026-08-06: ci.yml's pull_request trigger took ~7s to
+      # register a check and --watch lost that race every time). `gh pr view` is
+      # exit-0 and valid JSON regardless of check count, so poll it until at least
+      # one check exists before handing off to --watch. 30 * 5s = 150s ceiling.
+      - name: Wait for CI and merge
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) && steps.publish_pr.outputs.pr_url != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_URL="${{ steps.publish_pr.outputs.pr_url }}"
+          ATTEMPTS=0
+          MAX_ATTEMPTS=30
+          until [ "$(gh pr view "$PR_URL" --json statusCheckRollup --jq '.statusCheckRollup | length')" -gt 0 ]; do
+            ATTEMPTS=$((ATTEMPTS + 1))
+            if [ "$ATTEMPTS" -ge "$MAX_ATTEMPTS" ]; then
+              echo "No checks registered on $PR_URL after $((MAX_ATTEMPTS * 5))s -- giving up."
+              exit 1
+            fi
+            sleep 5
+          done
+          gh pr checks "$PR_URL" --watch --fail-fast
+          gh pr merge "$PR_URL" --squash --delete-branch
+
+      # GITHUB_TOKEN-authored pushes (including the merge above) deliberately don't
+      # trigger other workflows' push events, so docs.yml's push/paths trigger
+      # won't fire on its own -- dispatch it explicitly. docs.yml supports
+      # workflow_dispatch.
+      - name: Trigger docs redeploy
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run docs.yml --ref main
+
+      # Publish-what-passed is done by this point; now red the run so a failed
+      # ticker (or AllTickersFailedError, where nothing was staged and the steps
+      # above no-oped) actually surfaces. A permanently delisted ticker reddens
+      # every run until it is removed from WATCHLIST -- the correct prompt.
+      - name: Surface pipeline failure
+        if: ${{ steps.pipeline.outcome == 'failure' }}
+        run: |
+          echo "::error::equity-snapshot pipeline exited non-zero -- a ticker failed, or all did. Healthy pages, if any, were still published."
+          exit 1
