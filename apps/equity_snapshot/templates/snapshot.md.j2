@@ -1,0 +1,41 @@
+---
+title: "{{ page_title }}"
+date: {{ snapshot_date }}
+description: "{{ narrative.headline }}"
+ticker: "{{ snapshot.ticker }}"
+currency: "{{ snapshot.currency }}"
+---
+
+# {{ narrative.headline }}
+
+{{ narrative.summary }}
+
+## Snapshot
+
+{% for line in snapshot_lines %}
+{{ line }}
+{% endfor %}
+
+{% if snapshot.data_warnings %}
+## Data Warnings
+
+{% for warning in snapshot.data_warnings %}
+- {{ warning }}
+{% endfor %}
+
+{% endif %}
+## Valuation
+
+{{ valuation_header }}
+{{ valuation_separator }}
+{% for line in valuation_rows %}
+{{ line }}
+{% endfor %}
+
+## Profitability
+
+{{ profitability_header }}
+{{ profitability_separator }}
+{% for line in profitability_rows %}
+{{ line }}
+{% endfor %}
