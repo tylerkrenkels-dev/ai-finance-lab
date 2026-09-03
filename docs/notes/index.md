@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-09-03 — Commodity Rally Drives Risk-On Sentiment as Rates Hold Steady](2026-09-03.md)
 - [2026-09-02 — Oil Surges on Risk Appetite While Rates Hold Steady; Commodity Strength Broadens](2026-09-02.md)
 - [2026-09-01 — Rates Hold Steady as Curve Flattens; Commodity Weakness Persists Amid Stale Data](2026-09-01.md)
 - [2026-08-31 — US Rates Rise on Short End While Curve Flattens; Gold Retreats as Copper Gains](2026-08-31.md)
