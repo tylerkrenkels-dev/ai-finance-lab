@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Corporation (MSFT) — Equity Snapshot"
-date: 2026-09-01
+date: 2026-09-04
 description: "Microsoft trades at a premium valuation with exceptional profitability metrics"
 ticker: "MSFT"
 currency: "USD"
@@ -8,24 +8,24 @@ currency: "USD"
 
 # Microsoft trades at a premium valuation with exceptional profitability metrics
 
-Microsoft Corporation, valued at USD 3.72 trillion, trades at a trailing P/E of 27.9x and a forward P/E of 21.25x, reflecting investor confidence in its growth trajectory. The company's profitability profile is notably strong, with a gross margin of 67.94%, an operating margin of 45.11%, and a net profit margin of 40.3%, underscoring the efficiency of its business model. Return on equity stands at 34.04%, demonstrating substantial value creation for shareholders. The enterprise-to-EBITDA multiple of 19.42x is consistent with the company's premium valuation, positioning Microsoft as a high-quality business commanding a valuation premium typical of technology leaders with durable competitive advantages.
+Microsoft Corporation, valued at USD 3.71 trillion, trades at a trailing P/E of 28.41x, reflecting investor confidence in its market position despite elevated current valuations. The forward P/E of 21.2x suggests moderation in expected earnings multiples, while the enterprise-to-EBITDA ratio of 19.37x indicates a richly priced asset relative to operational cash generation. The company's profitability profile is exceptional: gross margin stands at 67.94%, operating margin at 45.11%, and net profit margin at 40.3%, demonstrating pricing power and operational efficiency across its business. Return on equity of 34.04% underscores strong capital deployment and shareholder value creation, positioning Microsoft among the most profitable large-cap technology firms.
 
 ## Snapshot
 
 - **Company:** Microsoft Corporation
 - **Ticker:** MSFT
 - **Sector:** Technology
-- **Price:** USD 501.02
-- **Market capitalization:** USD 3.72 trillion
-- **As of:** 2026-09-01
+- **Price:** USD 499.70
+- **Market capitalization:** USD 3.71 trillion
+- **As of:** 2026-09-04
 
 ## Valuation
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 27.90x |
-| Forward P/E | 21.25x |
-| EV / EBITDA | 19.42x |
+| Trailing P/E | 28.41x |
+| Forward P/E | 21.20x |
+| EV / EBITDA | 19.37x |
 
 ## Profitability
 
