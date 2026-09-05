@@ -1,23 +1,23 @@
 ---
 title: "BHP Group Limited (BHP.AX) — Equity Snapshot"
-date: 2026-09-02
-description: "BHP trades at a meaningful valuation discount to near-term earnings power"
+date: 2026-09-04
+description: "BHP trades at a meaningful discount to forward earnings with robust profitability metrics"
 ticker: "BHP.AX"
 currency: "AUD"
 ---
 
-# BHP trades at a meaningful valuation discount to near-term earnings power
+# BHP trades at a meaningful discount to forward earnings with robust profitability metrics
 
-BHP Group Limited, with a market capitalization of AUD 328.46 billion, is valued at a trailing P/E of 24.02x but a forward P/E of 17.98x, suggesting the market is pricing in material earnings growth ahead. The company's profitability profile is robust: gross margin stands at 85.92%, operating margin at 43.34%, and profit margin at 16.73%, while return on equity reaches 24.0%, reflecting efficient capital deployment in the basic materials sector. The compression between trailing and forward multiples indicates investor confidence in near-term operational improvement or earnings expansion.
+BHP Group Limited, valued at AUD 316.41 billion, trades at a trailing P/E of 23.06x but offers a forward P/E of 17.3x, suggesting market expectations for earnings growth ahead. The company demonstrates strong operational performance, with a gross margin of 85.92%, operating margin of 43.34%, and profit margin of 16.73%, underpinned by a return on equity of 24.0%. This combination of reasonable forward valuation and solid profitability metrics reflects a large-cap materials producer with meaningful cash generation capability.
 
 ## Snapshot
 
 - **Company:** BHP Group Limited
 - **Ticker:** BHP.AX
 - **Sector:** Basic Materials
-- **Price:** AUD 64.62
-- **Market capitalization:** AUD 328.46 billion
-- **As of:** 2026-09-02
+- **Price:** AUD 62.25
+- **Market capitalization:** AUD 316.41 billion
+- **As of:** 2026-09-04
 
 ## Data Warnings
 
@@ -27,8 +27,8 @@ BHP Group Limited, with a market capitalization of AUD 328.46 billion, is valued
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 24.02x |
-| Forward P/E | 17.98x |
+| Trailing P/E | 23.06x |
+| Forward P/E | 17.30x |
 | EV / EBITDA | — |
 
 ## Profitability
