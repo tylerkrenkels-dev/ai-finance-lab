@@ -33,6 +33,7 @@ class TestListAvailableSources:
         comps = [r for r in refs if r.system == "comps"]
         assert {r.key for r in comps} == {
             "splunk-cisco-qatalyst",
+            "ansys-synopsys-qatalyst",
             "footlocker-dicks-evercore",
             "norfolk-southern-union-pacific-wells-fargo",
         }
