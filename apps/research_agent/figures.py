@@ -23,6 +23,18 @@ not clear against a 34.09x, 5.8x must not clear against 5.9x). The only
 normalisation is trailing zeros, via ``float`` ("27.90x" == "27.9x"), because the
 real published pages disagree with themselves on trailing zeros.
 
+Known limitation -- unit re-expression. There is no conversion table, so a claim
+that restates a cited figure in a *different* unit than its source used (a
+basis-point move written as a percent, say) is flagged as a fabrication. That is
+a false positive, recoverable through the guard's one retry, never a missed
+error -- the safe direction. It is left unsolved deliberately: unlike
+``macro_note``'s narrative guard, which was loosened for a demonstrated real case
+of prose re-expressing basis points as percentages (#19), this agent's claims
+synthesise sources that each already present a number in one canonical unit, so
+there is no strong reason for a claim to convert one. Revisit only if it is
+actually observed happening -- the way the spelled-out-number case was observed,
+not theorised -- not before.
+
 ISO dates (``YYYY-MM-DD``) claim their span and contribute nothing -- front-matter
 and "As Of" dates are metadata, not computed quantities. A bare 4-digit year that
 is genuine table data (a comps "Year" cell, "August 2024") still lands as an
