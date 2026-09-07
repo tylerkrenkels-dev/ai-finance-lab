@@ -19,11 +19,13 @@ page itself publishes as a relational quantity -- a macro note's own 1D/1W/1M
 delta or curve slope; nothing for equity and comps, which have no time dimension.
 Cross-date phrasings ("since 2026-08-28", "the prior week") are never backed.
 
-Known limit, shared with the sibling numeric-fidelity guards: no intra-page
-metric attribution. A fabricated "+12bp" cumulative move still traces on check 1
-if some unrelated metric on a retrieved page happens to have moved 12bp -- the
-block then comes from check 2, which is why cross-date claims are rejected
-structurally, not by number.
+Known limits. (1) No intra-page metric attribution (shared with the sibling
+numeric-fidelity guards): a fabricated "+12bp" cumulative move still traces on
+check 1 if some unrelated metric on a retrieved page happens to have moved 12bp
+-- the block then comes from check 2, which is why cross-date claims are rejected
+structurally, not by number. (2) No unit conversion: a claim that re-expresses a
+cited figure in a different unit than its source used over-blocks (recoverable
+via retry) -- see ``figures`` for why that is left as-is.
 
 Dual mode: ``fail_fast`` returns the first violation (feed it back, retry once);
 ``collect_all`` returns every violation. Each is structured -- which claim, which
