@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-09-07 — Treasuries Consolidate as Curve Steepens; Commodities Rally Moderates with Gold and Copper Steady](2026-09-07.md)
 - [2026-09-06 — Treasuries Consolidate as Australian Yields Surge; Commodity Strength Persists Despite Data Gaps](2026-09-06.md)
 - [2026-09-03 — Commodity Rally Drives Risk-On Sentiment as Rates Hold Steady](2026-09-03.md)
 - [2026-09-02 — Oil Surges on Risk Appetite While Rates Hold Steady; Commodity Strength Broadens](2026-09-02.md)
