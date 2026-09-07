@@ -30,6 +30,11 @@ from pydantic import BaseModel, ConfigDict
 
 SourceSystem = Literal["macro_note", "comps", "equity_snapshot"]
 
+NO_CITATION = "none"
+"""Sentinel ``Claim.citation`` value for pure connective prose that cites nothing.
+The citation guard requires such a claim to contain no load-bearing figures, so a
+number never rides in an uncited claim."""
+
 
 class Section(BaseModel):
     """One named block of structured content from a source page.
@@ -83,3 +88,34 @@ class SourcePage(BaseModel):
 
     sections: list[Section]
     raw_markdown: str
+
+
+class Claim(BaseModel):
+    """One assertion in a research answer, bound to exactly one source.
+
+    ``citation`` is a ``SourcePage.doc_id`` or the ``NO_CITATION`` sentinel. One
+    doc_id per claim is deliberate: it removes the union-of-citations loophole
+    that lets a real figure from page A ride in a claim cited to page B. A claim
+    that needs two sources is two claims. ``NO_CITATION`` is only for connective
+    prose; the citation guard requires such a claim to carry no figures.
+    """
+
+    model_config = ConfigDict(frozen=True)
+
+    text: str
+    citation: str
+
+
+class ResearchAnswer(BaseModel):
+    """The agent's answer: an ordered list of single-cited claims.
+
+    The answer *is* this list -- rendering joins ``claim.text`` with ``[n]``
+    markers and appends a references block mapping each cited doc_id to its
+    published page. The citation guard consumes this plus the ``dict[doc_id,
+    SourcePage]`` the agent accumulated while retrieving.
+    """
+
+    model_config = ConfigDict(frozen=True)
+
+    question: str
+    claims: list[Claim]
