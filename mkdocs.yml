@@ -14,6 +14,7 @@ nav:
   - Daily Notes: notes/index.md
   - Deal Comps: comps/index.md
   - Equity Snapshots: equities/index.md
+  - Research Agent: research-agent/index.md
   - Architecture: architecture/overview.md
   - Standards:
       - Engineering: standards/engineering.md
