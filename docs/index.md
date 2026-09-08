@@ -10,10 +10,10 @@ archive of its automated output.
 
 | System | What it does | Status |
 |---|---|---|
-| Macro Research Digest | Automated daily pre-market macro note | live |
-| M&A Comparables Reference | Precedent-transaction tables transcribed from real SEC filings, every figure cited | live |
-| Equity Snapshot Generator | Weekly valuation & profitability snapshots for a fixed watchlist | live |
-| Research Agent | Tool-calling agent orchestrating the systems above | planned |
+| [Macro Research Digest](notes/index.md) | Automated daily pre-market macro note | live |
+| [M&A Comparables Reference](comps/index.md) | Precedent-transaction tables transcribed from real SEC filings, every figure cited | live |
+| [Equity Snapshot Generator](equities/index.md) | Weekly valuation & profitability snapshots for a fixed watchlist | live |
+| [Research Agent](research-agent/index.md) | Tool-calling agent orchestrating the systems above | live |
 
 The original blueprint had a fourth system, *Filings Intelligence* (SEC/ASX
 retrieval with risk-factor diffing) as phase 2; it was deprioritised in favour
