@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-09-14 — US Rates Rise Sharply While Equities Retreat; Commodity Weakness Persists](2026-09-14.md)
 - [2026-09-13 — Rates Rise Across Curves as Oil Surges; Australian Equities Retreat](2026-09-13.md)
 - [2026-09-10 — Oil Surges While Metals Retreat; US Rates Edge Higher as Curve Remains Flat](2026-09-10.md)
 - [2026-09-09 — Treasuries Rise on Broad Momentum; Commodities Surge While Equities Retreat](2026-09-09.md)
