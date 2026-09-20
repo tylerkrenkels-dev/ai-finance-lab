@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-09-20 — US Rates Decline While Curve Flattens; Energy Rallies Sharply as Commodity Volatility Persists](2026-09-20.md)
 - [2026-09-17 — Oil Surge Dominates as Rates Rise and Equities Retreat](2026-09-17.md)
 - [2026-09-16 — Oil Surges While Rates Rise and Equities Retreat; Data Gaps Persist in Commodities and FX](2026-09-16.md)
 - [2026-09-15 — US Rates Rise Across the Curve as Equities Retreat; Commodity Strength Persists Despite Data Gaps](2026-09-15.md)
