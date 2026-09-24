@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-09-24 — US Rates Rise Sharply While Commodities Pull Back; Australian Data Lags](2026-09-24.md)
 - [2026-09-23 — Rates Steady as Curve Flattens; Commodities Retreat Amid Mixed Signals](2026-09-23.md)
 - [2026-09-22 — Rates Hold Steady While Commodities Surge; Australian Data Lags](2026-09-22.md)
 - [2026-09-21 — US Rates Rise Sharply While Equities Retreat; Commodity Strength Persists Despite Data Gaps](2026-09-21.md)
