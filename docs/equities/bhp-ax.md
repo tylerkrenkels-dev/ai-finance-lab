@@ -1,23 +1,23 @@
 ---
 title: "BHP Group Limited (BHP.AX) — Equity Snapshot"
-date: 2026-09-18
-description: "BHP trades at a modest premium to forward earnings with robust profitability metrics"
+date: 2026-09-25
+description: "BHP trades at a discount to forward earnings with robust profitability metrics"
 ticker: "BHP.AX"
 currency: "AUD"
 ---
 
-# BHP trades at a modest premium to forward earnings with robust profitability metrics
+# BHP trades at a discount to forward earnings with robust profitability metrics
 
-BHP Group Limited, with a market capitalization of AUD 310.31 billion, is valued at a trailing P/E of 22.44x and a forward P/E of 16.69x, suggesting a compressed valuation relative to near-term earnings expectations. The company demonstrates strong operational performance, with a gross margin of 85.92%, an operating margin of 43.34%, and a profit margin of 16.73%, underpinned by a return on equity of 24.0%, indicating efficient capital deployment and substantial earnings generation relative to shareholder capital.
+BHP Group Limited, valued at AUD 308.64 billion, trades at a trailing P/E of 22.16x but offers a more attractive forward P/E of 16.37x, suggesting market expectations for earnings growth ahead. The company demonstrates strong operational performance, with a gross margin of 85.92%, operating margin of 43.34%, and profit margin of 16.73%, underpinned by a return on equity of 24.0%, indicating efficient capital deployment and substantial shareholder value generation.
 
 ## Snapshot
 
 - **Company:** BHP Group Limited
 - **Ticker:** BHP.AX
 - **Sector:** Basic Materials
-- **Price:** AUD 61.05
-- **Market capitalization:** AUD 310.31 billion
-- **As of:** 2026-09-18
+- **Price:** AUD 60.72
+- **Market capitalization:** AUD 308.64 billion
+- **As of:** 2026-09-25
 
 ## Data Warnings
 
@@ -27,8 +27,8 @@ BHP Group Limited, with a market capitalization of AUD 310.31 billion, is valued
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 22.44x |
-| Forward P/E | 16.69x |
+| Trailing P/E | 22.16x |
+| Forward P/E | 16.37x |
 | EV / EBITDA | — |
 
 ## Profitability
