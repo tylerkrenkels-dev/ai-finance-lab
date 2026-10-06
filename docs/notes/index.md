@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-10-06 — US Rates Rise Across the Curve as RBA Holds; Commodity Weakness Persists](2026-10-06.md)
 - [2026-10-04 — Rates Ease While Curve Steepens; Gold Retreats as Copper Stabilizes](2026-10-04.md)
 - [2026-10-01 — Oil Selloff Weighs on Risk Assets as RBA Tightens; US Curve Flattens](2026-10-01.md)
 - [2026-09-29 — US Rates Rise on Month-Long Basis While Gold Retreats; Australian Equities Stabilize](2026-09-29.md)
