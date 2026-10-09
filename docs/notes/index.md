@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-10-09 — US Rates Soften While Curve Steepens; Commodity Rally Continues Amid Stale Data Gaps](2026-10-09.md)
 - [2026-10-08 — US Rates Ease While Curve Flattens; Commodity Volatility Persists Amid Stale Data](2026-10-08.md)
 - [2026-10-06 — US Rates Rise Across the Curve as RBA Holds; Commodity Weakness Persists](2026-10-06.md)
 - [2026-10-04 — Rates Ease While Curve Steepens; Gold Retreats as Copper Stabilizes](2026-10-04.md)
