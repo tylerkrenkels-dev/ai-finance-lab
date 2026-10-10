@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Corporation (MSFT) — Equity Snapshot"
-date: 2026-10-02
+date: 2026-10-09
 description: "Microsoft trades at a premium valuation with exceptional profitability metrics"
 ticker: "MSFT"
 currency: "USD"
@@ -8,24 +8,24 @@ currency: "USD"
 
 # Microsoft trades at a premium valuation with exceptional profitability metrics
 
-Microsoft is valued at USD 3.84 trillion with a current price of 517.53. The stock trades at a trailing P/E of 28.82x, elevated relative to its forward P/E of 21.89x, while the enterprise-to-EBITDA multiple stands at 20.05x. The company demonstrates exceptional profitability across all margins: gross margin of 67.94%, operating margin of 45.11%, and profit margin of 40.3%. Return on equity is robust at 34.04%, reflecting strong capital efficiency and shareholder value generation. The valuation premium appears supported by the company's dominant profitability profile, though the trailing multiple suggests the market is pricing in expectations of near-term earnings moderation.
+Microsoft Corporation, valued at USD 3.97 trillion, trades at a trailing P/E of 29.81x, reflecting investor confidence in the technology giant's growth prospects. The forward P/E of 22.6x suggests some moderation in valuation expectations, while the enterprise-to-EBITDA multiple of 20.52x indicates a richly priced asset relative to operational cash generation. The company's profitability profile is exceptional: gross margin stands at 67.94%, operating margin at 45.11%, and net profit margin at 40.3%, demonstrating pricing power and operational efficiency across the business. Return on equity of 34.04% underscores strong capital deployment and shareholder value creation, positioning Microsoft as a highly profitable enterprise despite its elevated valuation multiples.
 
 ## Snapshot
 
 - **Company:** Microsoft Corporation
 - **Ticker:** MSFT
 - **Sector:** Technology
-- **Price:** USD 517.53
-- **Market capitalization:** USD 3.84 trillion
-- **As of:** 2026-10-02
+- **Price:** USD 535.07
+- **Market capitalization:** USD 3.97 trillion
+- **As of:** 2026-10-09
 
 ## Valuation
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 28.82x |
-| Forward P/E | 21.89x |
-| EV / EBITDA | 20.05x |
+| Trailing P/E | 29.81x |
+| Forward P/E | 22.60x |
+| EV / EBITDA | 20.52x |
 
 ## Profitability
 
