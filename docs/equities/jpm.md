@@ -1,6 +1,6 @@
 ---
 title: "JPMorgan Chase & Co. (JPM) — Equity Snapshot"
-date: 2026-10-02
+date: 2026-10-09
 description: "JPMorgan Chase trades at a modest valuation multiple with robust profitability metrics"
 ticker: "JPM"
 currency: "USD"
@@ -8,16 +8,16 @@ currency: "USD"
 
 # JPMorgan Chase trades at a modest valuation multiple with robust profitability metrics
 
-JPMorgan Chase & Co. is valued at USD 883.53 billion with a trailing price-to-earnings ratio of 14.25x and a forward P/E of 13.29x, suggesting a relatively compressed valuation for a financial services leader. The company demonstrates strong operational efficiency, with an operating margin of 50.39% and a profit margin of 34.92%, while generating a return on equity of 17.79%, reflecting effective capital deployment and earnings generation across its diversified business platform.
+JPMorgan Chase & Co. is valued at USD 885.15 billion with a trailing P/E of 14.27x and forward P/E of 13.25x, suggesting a relatively compressed valuation relative to near-term earnings expectations. The company demonstrates strong operational efficiency, with an operating margin of 50.39% and a profit margin of 34.92%, underscoring the earnings power of its diversified financial services platform. Return on equity stands at 17.79%, reflecting solid capital deployment and shareholder value generation. The forward multiple trading below the trailing multiple indicates market expectations for earnings growth in the period ahead.
 
 ## Snapshot
 
 - **Company:** JPMorgan Chase & Co.
 - **Ticker:** JPM
 - **Sector:** Financial Services
-- **Price:** USD 332.38
-- **Market capitalization:** USD 883.53 billion
-- **As of:** 2026-10-02
+- **Price:** USD 332.99
+- **Market capitalization:** USD 885.15 billion
+- **As of:** 2026-10-09
 
 ## Data Warnings
 
@@ -28,8 +28,8 @@ JPMorgan Chase & Co. is valued at USD 883.53 billion with a trailing price-to-ea
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 14.25x |
-| Forward P/E | 13.29x |
+| Trailing P/E | 14.27x |
+| Forward P/E | 13.25x |
 | EV / EBITDA | — |
 
 ## Profitability

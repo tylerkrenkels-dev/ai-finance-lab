@@ -1,6 +1,6 @@
 ---
 title: "Commonwealth Bank of Australia (CBA.AX) — Equity Snapshot"
-date: 2026-10-02
+date: 2026-10-09
 description: "Commonwealth Bank trades at a modest premium with solid profitability metrics"
 ticker: "CBA.AX"
 currency: "AUD"
@@ -8,16 +8,16 @@ currency: "AUD"
 
 # Commonwealth Bank trades at a modest premium with solid profitability metrics
 
-Commonwealth Bank of Australia is valued at AUD 253.2 billion with a trailing P/E of 23.26x and forward P/E of 22.31x, suggesting modest valuation relative to near-term earnings expectations. The bank demonstrates strong operational efficiency, with an operating margin of 56.2% and a profit margin of 37.0%, reflecting the high-margin nature of financial services. Return on equity stands at 13.86%, indicating reasonable capital productivity for a large-cap financial institution.
+Commonwealth Bank of Australia is valued at AUD 249.63 billion with a trailing P/E of 22.9x and forward P/E of 22.0x, suggesting modest valuation relative to near-term earnings expectations. The bank demonstrates strong operational efficiency, with an operating margin of 56.2% and a profit margin of 37.0%, reflecting the high-margin nature of financial services. Return on equity stands at 13.86%, indicating reasonable capital productivity for a major financial institution.
 
 ## Snapshot
 
 - **Company:** Commonwealth Bank of Australia
 - **Ticker:** CBA.AX
 - **Sector:** Financial Services
-- **Price:** AUD 151.45
-- **Market capitalization:** AUD 253.2 billion
-- **As of:** 2026-10-02
+- **Price:** AUD 149.29
+- **Market capitalization:** AUD 249.63 billion
+- **As of:** 2026-10-09
 
 ## Data Warnings
 
@@ -28,8 +28,8 @@ Commonwealth Bank of Australia is valued at AUD 253.2 billion with a trailing P/
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 23.26x |
-| Forward P/E | 22.31x |
+| Trailing P/E | 22.90x |
+| Forward P/E | 22.00x |
 | EV / EBITDA | — |
 
 ## Profitability
