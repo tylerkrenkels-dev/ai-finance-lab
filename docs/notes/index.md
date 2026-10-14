@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-10-14 — Treasuries Retreat on Curve Flattening; Gold Pressured as Commodities Mixed](2026-10-14.md)
 - [2026-10-13 — Rates Ease While Commodity Strength Persists; Data Staleness Limits Near-Term Clarity](2026-10-13.md)
 - [2026-10-11 — Treasuries Retreat on Softer Near-Term Outlook; Commodity Strength Persists Despite Data Gaps](2026-10-11.md)
 - [2026-10-09 — US Rates Soften While Curve Steepens; Commodity Rally Continues Amid Stale Data Gaps](2026-10-09.md)
