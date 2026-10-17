@@ -1,6 +1,6 @@
 ---
 title: "Apple Inc. (AAPL) — Equity Snapshot"
-date: 2026-10-09
+date: 2026-10-16
 description: "Apple trades at elevated valuation multiples despite robust profitability metrics"
 ticker: "AAPL"
 currency: "USD"
@@ -8,24 +8,24 @@ currency: "USD"
 
 # Apple trades at elevated valuation multiples despite robust profitability metrics
 
-Apple Inc. is valued at USD 4.91 trillion with a trailing price-to-earnings ratio of 38.61x and a forward P/E of 35.11x, reflecting a premium valuation in the technology sector. The company's profitability profile remains exceptionally strong, with a gross margin of 48.65%, operating margin of 32.62%, and net profit margin of 27.62%, underscoring the durability of its business model. Return on equity stands at 148.75%, demonstrating highly efficient capital deployment. The enterprise-to-EBITDA multiple of 29.38x is consistent with the elevated earnings multiples, suggesting the market is pricing in sustained earnings power and growth expectations.
+Apple Inc. is valued at USD 5.01 trillion with a current price of 343.46, supported by exceptional profitability across all margins: gross margin of 48.65%, operating margin of 32.62%, and profit margin of 27.62%. The company's return on equity stands at 148.75%, reflecting highly efficient capital deployment. However, valuation multiples appear stretched, with a trailing P/E of 39.39x and forward P/E of 35.86x, while the enterprise-to-EBITDA ratio of 29.97x suggests the market is pricing in significant future growth expectations relative to current earnings power.
 
 ## Snapshot
 
 - **Company:** Apple Inc.
 - **Ticker:** AAPL
 - **Sector:** Technology
-- **Price:** USD 336.64
-- **Market capitalization:** USD 4.91 trillion
-- **As of:** 2026-10-09
+- **Price:** USD 343.46
+- **Market capitalization:** USD 5.01 trillion
+- **As of:** 2026-10-16
 
 ## Valuation
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 38.61x |
-| Forward P/E | 35.11x |
-| EV / EBITDA | 29.38x |
+| Trailing P/E | 39.39x |
+| Forward P/E | 35.86x |
+| EV / EBITDA | 29.97x |
 
 ## Profitability
 
