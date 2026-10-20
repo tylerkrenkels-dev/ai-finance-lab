@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-10-20 — US Rates Rise on Steeper Curve as Commodities Mixed; Australian Data Lags](2026-10-20.md)
 - [2026-10-19 — US Rates Ease While Australian Yields Stabilize; Gold Retreats Amid Mixed Commodity Signals](2026-10-19.md)
 - [2026-10-18 — US Yields Retreat While Australian Rates Hold Steady; Commodity Strength Persists](2026-10-18.md)
 - [2026-10-14 — Treasuries Retreat on Curve Flattening; Gold Pressured as Commodities Mixed](2026-10-14.md)
