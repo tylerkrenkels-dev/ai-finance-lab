@@ -1,6 +1,6 @@
 ---
 title: "JPMorgan Chase & Co. (JPM) — Equity Snapshot"
-date: 2026-10-16
+date: 2026-10-23
 description: "JPMorgan Chase trades at a modest valuation multiple with robust profitability metrics"
 ticker: "JPM"
 currency: "USD"
@@ -8,16 +8,16 @@ currency: "USD"
 
 # JPMorgan Chase trades at a modest valuation multiple with robust profitability metrics
 
-JPMorgan Chase & Co. is valued at USD 902.16 billion with a trailing price-to-earnings ratio of 14.25x and a forward P/E of 13.32x, suggesting a relatively compressed valuation for a financial services leader. The company demonstrates strong operational efficiency, with an operating margin of 42.58% and a profit margin of 34.59%, while generating a return on equity of 18.01%, reflecting effective capital deployment and earnings generation relative to shareholder investment.
+JPMorgan Chase & Co. is valued at USD 880.54 billion with a trailing P/E of 13.91x and forward P/E of 12.99x, suggesting a relatively compressed valuation for a financial services leader. The company demonstrates strong profitability across multiple measures: an operating margin of 42.58%, a profit margin of 34.59%, and a return on equity of 18.01%, reflecting efficient capital deployment and earnings generation. The forward multiple trading below the trailing multiple indicates market expectations for continued earnings growth.
 
 ## Snapshot
 
 - **Company:** JPMorgan Chase & Co.
 - **Ticker:** JPM
 - **Sector:** Financial Services
-- **Price:** USD 339.72
-- **Market capitalization:** USD 902.16 billion
-- **As of:** 2026-10-16
+- **Price:** USD 331.58
+- **Market capitalization:** USD 880.54 billion
+- **As of:** 2026-10-23
 
 ## Data Warnings
 
@@ -28,8 +28,8 @@ JPMorgan Chase & Co. is valued at USD 902.16 billion with a trailing price-to-ea
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 14.25x |
-| Forward P/E | 13.32x |
+| Trailing P/E | 13.91x |
+| Forward P/E | 12.99x |
 | EV / EBITDA | — |
 
 ## Profitability
