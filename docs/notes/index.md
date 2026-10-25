@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-10-25 — Treasury Yields Decline Sharply Across the Curve as Rate Expectations Ease](2026-10-25.md)
 - [2026-10-22 — Commodity Selloff Weighs on Risk Assets as US Rates Stabilize](2026-10-22.md)
 - [2026-10-21 — US Rates Rise on Steeper Curve as RBA Holds; Commodity Weakness Persists](2026-10-21.md)
 - [2026-10-20 — US Rates Rise on Steeper Curve as Commodities Mixed; Australian Data Lags](2026-10-20.md)
