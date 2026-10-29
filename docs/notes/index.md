@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-10-29 — Treasuries Extend Decline While Commodities Show Mixed Signals; Australian Data Lags](2026-10-29.md)
 - [2026-10-27 — US Curve Flattens as Short Rates Decline; Gold Rebounds While Copper Surges](2026-10-27.md)
 - [2026-10-26 — Rates Steady as Curve Flattens; Gold Retreats While Copper Stabilizes](2026-10-26.md)
 - [2026-10-25 — Treasury Yields Decline Sharply Across the Curve as Rate Expectations Ease](2026-10-25.md)
