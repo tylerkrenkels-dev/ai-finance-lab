@@ -1,23 +1,23 @@
 ---
 title: "Commonwealth Bank of Australia (CBA.AX) — Equity Snapshot"
-date: 2026-10-23
-description: "CBA trades at a modest premium with solid profitability metrics"
+date: 2026-10-30
+description: "Commonwealth Bank trades at a modest premium with solid profitability metrics"
 ticker: "CBA.AX"
 currency: "AUD"
 ---
 
-# CBA trades at a modest premium with solid profitability metrics
+# Commonwealth Bank trades at a modest premium with solid profitability metrics
 
-Commonwealth Bank of Australia is valued at AUD 274.23 billion with a trailing P/E of 25.15x and forward P/E of 24.13x, suggesting modest valuation relative to near-term earnings expectations. The bank demonstrates robust profitability, with an operating margin of 56.2%, a profit margin of 37.0%, and a return on equity of 13.86%, reflecting efficient cost management and capital deployment typical of a major financial institution.
+Commonwealth Bank of Australia, with a market capitalization of AUD 278.78 billion, is valued at a trailing P/E of 25.57x and a forward P/E of 24.54x, suggesting modest valuation relative to near-term earnings expectations. The bank demonstrates strong operational efficiency, with an operating margin of 56.2% and a profit margin of 37.0%, reflecting robust cost management and earnings conversion. Return on equity stands at 13.86%, indicating reasonable capital productivity for a financial services institution of this scale.
 
 ## Snapshot
 
 - **Company:** Commonwealth Bank of Australia
 - **Ticker:** CBA.AX
 - **Sector:** Financial Services
-- **Price:** AUD 164.00
-- **Market capitalization:** AUD 274.23 billion
-- **As of:** 2026-10-23
+- **Price:** AUD 166.72
+- **Market capitalization:** AUD 278.78 billion
+- **As of:** 2026-10-30
 
 ## Data Warnings
 
@@ -28,8 +28,8 @@ Commonwealth Bank of Australia is valued at AUD 274.23 billion with a trailing P
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 25.15x |
-| Forward P/E | 24.13x |
+| Trailing P/E | 25.57x |
+| Forward P/E | 24.54x |
 | EV / EBITDA | — |
 
 ## Profitability
