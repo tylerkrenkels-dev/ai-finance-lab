@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-11-06 — US Yields Retreat Across the Curve as Fed Holds Steady; Australian Rates Rise on RBA Tightening](2026-11-06.md)
 - [2026-11-05 — Gold Surges While Oil Retreats; RBA Tightens as US Rates Edge Higher](2026-11-05.md)
 - [2026-11-04 — Treasuries Extend Decline as Fed Holds Steady; Gold and Copper Retreat](2026-11-04.md)
 - [2026-11-03 — US Rates Decline Across the Curve as Gold Rallies; Australian Data Stale](2026-11-03.md)
