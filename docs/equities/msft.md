@@ -1,6 +1,6 @@
 ---
 title: "Microsoft Corporation (MSFT) — Equity Snapshot"
-date: 2026-10-30
+date: 2026-11-06
 description: "Microsoft trades at a premium valuation with exceptional profitability metrics"
 ticker: "MSFT"
 currency: "USD"
@@ -8,24 +8,24 @@ currency: "USD"
 
 # Microsoft trades at a premium valuation with exceptional profitability metrics
 
-Microsoft Corporation, valued at USD 3.88 trillion, trades at a trailing P/E of 27.24x and a forward P/E of 21.62x, reflecting investor confidence in its growth trajectory despite elevated current valuations. The company demonstrates exceptional profitability across all measures: a gross margin of 67.66%, an operating margin of 49.76%, and a net profit margin of 41.17%, underscoring the strength of its business model and pricing power. With an enterprise-to-EBITDA multiple of 19.18x and a return on equity of 34.22%, Microsoft exhibits both the operational efficiency and capital effectiveness expected of a mature technology leader commanding a significant market position.
+Microsoft Corporation is valued at USD 3.94 trillion with a current price of 530.61. The stock trades at a trailing P/E of 27.69x, reflecting a premium to its forward P/E of 21.94x, while the enterprise-to-EBITDA multiple stands at 19.49x. The company demonstrates exceptional profitability across all measures: gross margin of 67.66%, operating margin of 49.76%, and profit margin of 41.17%, alongside a return on equity of 34.22%. These metrics underscore Microsoft's strong pricing power and operational efficiency, though the elevated trailing valuation multiple suggests the market has already priced in significant expectations for near-term performance.
 
 ## Snapshot
 
 - **Company:** Microsoft Corporation
 - **Ticker:** MSFT
 - **Sector:** Technology
-- **Price:** USD 521.91
-- **Market capitalization:** USD 3.88 trillion
-- **As of:** 2026-10-30
+- **Price:** USD 530.61
+- **Market capitalization:** USD 3.94 trillion
+- **As of:** 2026-11-06
 
 ## Valuation
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 27.24x |
-| Forward P/E | 21.62x |
-| EV / EBITDA | 19.18x |
+| Trailing P/E | 27.69x |
+| Forward P/E | 21.94x |
+| EV / EBITDA | 19.49x |
 
 ## Profitability
 
