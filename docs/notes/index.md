@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-11-12 — US Rates Stabilize While Australian Yields Decline; Gold Retreats Sharply](2026-11-12.md)
 - [2026-11-11 — US Rates Stabilize While Australian Policy Tightens; Commodity Weakness Persists](2026-11-11.md)
 - [2026-11-10 — Australian equities surge while US rates stabilize; RBA holds as AUD weakens sharply](2026-11-10.md)
 - [2026-11-08 — Yields Decline Across Developed Markets as RBA Tightens; Commodity Weakness Persists](2026-11-08.md)
