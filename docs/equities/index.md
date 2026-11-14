@@ -8,9 +8,9 @@ outage falls back to the last stored value and is marked in that page's Data
 Warnings section.
 
 <!-- equities:start -->
-- [Apple Inc. (AAPL)](aapl.md) — snapshot as of 2026-11-06
-- [BHP Group Limited (BHP.AX)](bhp-ax.md) — snapshot as of 2026-11-06
-- [Commonwealth Bank of Australia (CBA.AX)](cba-ax.md) — snapshot as of 2026-11-06
-- [JPMorgan Chase & Co. (JPM)](jpm.md) — snapshot as of 2026-11-06
-- [Microsoft Corporation (MSFT)](msft.md) — snapshot as of 2026-11-06
+- [Apple Inc. (AAPL)](aapl.md) — snapshot as of 2026-11-13
+- [BHP Group Limited (BHP.AX)](bhp-ax.md) — snapshot as of 2026-11-13
+- [Commonwealth Bank of Australia (CBA.AX)](cba-ax.md) — snapshot as of 2026-11-13
+- [JPMorgan Chase & Co. (JPM)](jpm.md) — snapshot as of 2026-11-13
+- [Microsoft Corporation (MSFT)](msft.md) — snapshot as of 2026-11-13
 <!-- equities:end -->
