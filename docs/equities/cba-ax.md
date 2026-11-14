@@ -1,23 +1,23 @@
 ---
 title: "Commonwealth Bank of Australia (CBA.AX) — Equity Snapshot"
-date: 2026-11-06
-description: "Commonwealth Bank trades at a modest premium with solid profitability metrics"
+date: 2026-11-13
+description: "Commonwealth Bank trades at a premium valuation with solid profitability metrics"
 ticker: "CBA.AX"
 currency: "AUD"
 ---
 
-# Commonwealth Bank trades at a modest premium with solid profitability metrics
+# Commonwealth Bank trades at a premium valuation with solid profitability metrics
 
-Commonwealth Bank of Australia is valued at AUD 280.1 billion with a trailing P/E of 25.69x and forward P/E of 24.65x, suggesting modest valuation relative to near-term earnings expectations. The bank demonstrates strong operational efficiency, with an operating margin of 56.2% and profit margin of 37.0%, reflecting the high-margin nature of financial services. Return on equity stands at 13.86%, indicating reasonable capital productivity for a large-cap financial institution.
+Commonwealth Bank of Australia is valued at AUD 285.72 billion with a trailing P/E of 26.21x and forward P/E of 25.25x, positioning it at a relatively elevated valuation multiple. The bank demonstrates strong profitability, with an operating margin of 55.85%, a profit margin of 37.0%, and a return on equity of 13.86%, reflecting efficient operations and solid earnings generation relative to shareholder capital.
 
 ## Snapshot
 
 - **Company:** Commonwealth Bank of Australia
 - **Ticker:** CBA.AX
 - **Sector:** Financial Services
-- **Price:** AUD 167.51
-- **Market capitalization:** AUD 280.1 billion
-- **As of:** 2026-11-06
+- **Price:** AUD 170.87
+- **Market capitalization:** AUD 285.72 billion
+- **As of:** 2026-11-13
 
 ## Data Warnings
 
@@ -28,8 +28,8 @@ Commonwealth Bank of Australia is valued at AUD 280.1 billion with a trailing P/
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 25.69x |
-| Forward P/E | 24.65x |
+| Trailing P/E | 26.21x |
+| Forward P/E | 25.25x |
 | EV / EBITDA | — |
 
 ## Profitability
@@ -37,6 +37,6 @@ Commonwealth Bank of Australia is valued at AUD 280.1 billion with a trailing P/
 | Metric | Value |
 | --- | --- |
 | Gross margin | — |
-| Operating margin | 56.20% |
+| Operating margin | 55.85% |
 | Profit margin | 37.00% |
 | Return on equity | 13.86% |
