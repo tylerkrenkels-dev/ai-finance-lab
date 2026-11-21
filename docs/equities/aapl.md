@@ -1,6 +1,6 @@
 ---
 title: "Apple Inc. (AAPL) — Equity Snapshot"
-date: 2026-11-13
+date: 2026-11-20
 description: "Apple trades at elevated valuation multiples despite robust profitability metrics"
 ticker: "AAPL"
 currency: "USD"
@@ -8,24 +8,24 @@ currency: "USD"
 
 # Apple trades at elevated valuation multiples despite robust profitability metrics
 
-Apple Inc. is valued at USD 5.18 trillion with a current price of 356.27, commanding a trailing P/E of 39.67x and a forward P/E of 33.7x that reflect investor expectations for continued growth. The company's profitability profile remains exceptionally strong, with a gross margin of 48.79%, operating margin of 33.01%, and profit margin of 27.6%, underscoring the pricing power and operational efficiency of its business model. Return on equity stands at 142.26%, demonstrating exceptional capital efficiency. The enterprise-to-EBITDA multiple of 30.41x aligns with the elevated earnings multiples, suggesting the market is pricing in sustained competitive advantages and earnings quality typical of the technology sector's most dominant players.
+Apple Inc. is valued at USD 4.98 trillion with a current price of 342.56, supported by strong underlying profitability. The company's trailing P/E of 38.15x and forward P/E of 32.4x reflect a premium valuation, while its enterprise-to-EBITDA multiple of 29.25x indicates elevated pricing relative to operational earnings. Profitability remains exceptional, with a gross margin of 48.79%, operating margin of 33.01%, and profit margin of 27.6%, demonstrating pricing power and operational efficiency. Return on equity stands at 142.26%, underscoring the company's ability to generate substantial returns on shareholder capital. The valuation premium appears justified by the strength of these profitability metrics, though investors are pricing in significant future growth expectations.
 
 ## Snapshot
 
 - **Company:** Apple Inc.
 - **Ticker:** AAPL
 - **Sector:** Technology
-- **Price:** USD 356.27
-- **Market capitalization:** USD 5.18 trillion
-- **As of:** 2026-11-13
+- **Price:** USD 342.56
+- **Market capitalization:** USD 4.98 trillion
+- **As of:** 2026-11-20
 
 ## Valuation
 
 | Multiple | Value |
 | --- | --- |
-| Trailing P/E | 39.67x |
-| Forward P/E | 33.70x |
-| EV / EBITDA | 30.41x |
+| Trailing P/E | 38.15x |
+| Forward P/E | 32.40x |
+| EV / EBITDA | 29.25x |
 
 ## Profitability
 
