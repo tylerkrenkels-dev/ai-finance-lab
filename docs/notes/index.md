@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-11-23 — Treasuries Rally on Softer Momentum; Gold Rebounds While Copper Stabilizes](2026-11-23.md)
 - [2026-11-19 — Commodity Weakness Weighs on Risk Assets as Rates Stabilize](2026-11-19.md)
 - [2026-11-18 — US Rates Ease While Australian Bonds Lag; Commodity Weakness Persists](2026-11-18.md)
 - [2026-11-17 — US Rates Rise Sharply While Australian Assets Weaken; Commodity Losses Accelerate](2026-11-17.md)
