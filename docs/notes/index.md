@@ -4,6 +4,7 @@ The Macro Research Digest publishes here every weekday morning once Phase 1
 is live. Each note is dated and permanent.
 
 <!-- notes:start -->
+- [2026-11-26 — US Yields Retreat While Australian Equities Rally; Commodity Volatility Persists](2026-11-26.md)
 - [2026-11-24 — US Rates Decline Across the Curve as Gold Surges; Australian Equities Rally](2026-11-24.md)
 - [2026-11-23 — Treasuries Rally on Softer Momentum; Gold Rebounds While Copper Stabilizes](2026-11-23.md)
 - [2026-11-19 — Commodity Weakness Weighs on Risk Assets as Rates Stabilize](2026-11-19.md)
